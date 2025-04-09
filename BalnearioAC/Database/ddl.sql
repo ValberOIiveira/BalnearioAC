@@ -17,7 +17,8 @@ CREATE TABLE users (
 );
 
 CREATE TABLE employees (
-    id_user INTEGER PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+    id SERIAL PRIMARY KEY,
+    id_user INTEGER REFERENCES users(id) ON DELETE CASCADE,
     role VARCHAR(255),
     salary DECIMAL(10,2),
     admission_date DATE
