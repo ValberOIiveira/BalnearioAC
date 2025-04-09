@@ -10,9 +10,9 @@ namespace BalnearioAC.Models
     public class UserType
     {
         [Column("id")]
-        public int id { get; set; }
+        public int Id { get; set; }
 
-        [Column("tipo")]
-        public string tipo { get; set; }
+        [Column("name")]
+        public string Name { get; set; }
     }
 }

@@ -10,29 +10,29 @@ namespace BalnearioAC.Models
     public class User
     {
         [Column("id")]
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [Column("name")]
-        public string name { get; set; }
+        public string Name { get; set; }
 
         [Column("cpf")]
-        public string cpf { get; set; }
+        public string Cpf { get; set; }
 
         [Column("email")]
-        public string email { get; set; }
+        public string Email { get; set; }
 
         [Column("phone")]
-        public string? phone { get; set; }
+        public string? Phone { get; set; }
 
         [Column("age")]
-        public DateTime? age { get; set; }
+        public DateTime? Age { get; set; }
 
         [Column("passwd")]
-        public string passwd { get; set; }
+        public string Passwd { get; set; }
 
         [Column("id_user_type")]
-        public int id_user_type { get; set; }
+        public int Id_user_type { get; set; }
 
-        public UserType user_type { get; set; }
+        public UserType User_type { get; set; }
     }
 }
