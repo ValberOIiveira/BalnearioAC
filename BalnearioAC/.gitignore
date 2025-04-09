@@ -1,0 +1,65 @@
+
+---
+
+### 📄 **2. Criar um `.gitignore`**  
+Para evitar arquivos desnecessários no repositório.
+
+```plaintext
+# Binário e build
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.app
+
+# Configurações do usuário
+.vscode/
+.idea/
+*.suo
+*.user
+*.rsuser
+*.sln.docstates
+
+# Dependências
+node_modules/
+bower_components/
+wwwroot/lib/
+
+# Logs e arquivos temporários
+logs/
+*.log
+**/log/
+temp/
+*.tmp
+
+# Configuração de ambiente
+.env
+appsettings.Development.json
+appsettings.Local.json
+appsettings.Production.json
+appsettings.Staging.json
+
+# Arquivos do Visual Studio
+.vs/
+*.csproj.user
+
+# Pasta de migrações geradas pelo EF Core
+Migrations/
+
+# Arquivos do Rider (JetBrains)
+.idea/
+*.iml
+
+# Arquivos gerados pelo NuGet
+*.nupkg
+project.lock.json
+.nuget/
+
+# Arquivos de deploy
+.publish/
+*.swp
+
+# Arquivos do sistema
+Thumbs.db
+.DS_Store
