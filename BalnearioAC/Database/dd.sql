@@ -72,3 +72,33 @@ CREATE TABLE report (
     type VARCHAR(255),
     generation_date DATE
 );
+
+-- Log de reservas
+CREATE TABLE log_reservations (
+    id SERIAL PRIMARY KEY,
+    id_reservation INTEGER REFERENCES reservations(id),
+    action VARCHAR(50), -- 'create', 'update', 'delete', 'cancel'
+    action_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    performed_by INTEGER REFERENCES users(id), -- quem fez a ação
+    old_data JSONB, -- dados antes da mudança (opcional)
+    new_data JSONB  -- dados depois da mudança (opcional)
+);
+
+-- Log de vendas
+CREATE TABLE log_sales (
+    id SERIAL PRIMARY KEY,
+    id_sale INTEGER REFERENCES sales(id),
+    action VARCHAR(50), -- 'create', 'update', 'delete'
+    action_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    performed_by INTEGER REFERENCES users(id),
+    details JSONB -- detalhes da alteração ou registro
+);
+
+-- Log geral de usuários (login/logout, etc.)
+CREATE TABLE log_user_activity (
+    id SERIAL PRIMARY KEY,
+    id_user INTEGER REFERENCES users(id),
+    activity_type VARCHAR(50), -- 'login', 'logout', 'register', etc.
+    activity_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    description TEXT
+);
