@@ -4,21 +4,24 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BalnearioAC.Models
 {
-    [Table("log_reservations")]
-    public class LogReservation
+    [Table("report_log_reservations")]
+    public class ReportLogReservation
     {
         [Key]
         [Column("id")]
         public int Id { get; set; }
 
-        [Column("id_reservation")]
+        [Column("report_date")]
+        public DateTime ReportDate { get; set; } = DateTime.Today;
+
+        [Column("reservation_id")]
         public int? ReservationId { get; set; }
 
         [Column("action")]
         public string? Action { get; set; }
 
         [Column("action_date")]
-        public DateTime? ActionDate { get; set; } = DateTime.Now;
+        public DateTime? ActionDate { get; set; }
 
         [Column("performed_by")]
         public int? PerformedBy { get; set; }
