@@ -13,14 +13,20 @@ namespace BalnearioAC.Models
         [Key]
         [Column("id")]
         public int Id { get; set; }
-        [ForeignKey("users")]
+
         [Column("id_user")]
-        public int Id_user { get; set; }
+        public int? IdUser { get; set; }
+
         [Column("role")]
         public string? Role { get; set; }
+
         [Column("salary")]
-        public double Salary { get; set; }
+        public decimal? Salary { get; set; }
+
         [Column("admission_date")]
-        public DateTime Admission_date { get; set; }
+        public DateTime? AdmissionDate { get; set; }
+
+        [ForeignKey("IdUser")]
+        public User? User { get; set; }
     }
 }
