@@ -33,7 +33,7 @@ namespace BalnearioAC.Controllers
             if (kiosk == null)
                 return NotFound();
 
-            return kiosk;
+            return Ok(kiosk);
         }
 
         [HttpPost]

@@ -33,9 +33,9 @@ namespace BalnearioAC.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Reservation>()
-                .HasOne(r => r.Visitor)  // Relacionamento com a entidade Visitor
+                .HasOne(r => r.Visitor)  
                 .WithMany()
-                .HasForeignKey(r => r.VisitorId)  // Chave estrangeira correta
+                .HasForeignKey(r => r.VisitorId)  
                 .HasConstraintName("FK_Reservation_Visitor");
 
             base.OnModelCreating(modelBuilder);
