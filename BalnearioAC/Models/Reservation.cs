@@ -18,8 +18,8 @@ namespace BalnearioAC.Models
         public DateTime EndDate { get; set; }
 
         [Column("id_visitor")]
-        public int VisitorId { get; set; }
-
+        public int VisitorId { get; set; }  // Apenas o ID da FK
+      
         [Column("id_kiosk")]
         public int? KioskId { get; set; }
 
@@ -28,5 +28,6 @@ namespace BalnearioAC.Models
 
         [ForeignKey("KioskId")]
         public Kiosk? Kiosk { get; set; }
+
     }
 }
