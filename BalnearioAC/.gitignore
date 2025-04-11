@@ -63,3 +63,5 @@ project.lock.json
 # Arquivos do sistema
 Thumbs.db
 .DS_Store
+
+appsettings.json
