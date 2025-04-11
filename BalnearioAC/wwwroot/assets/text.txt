@@ -1,0 +1,23 @@
+wwwroot
+│   ├── assets/
+│   │   └── img/
+|   |
+│   ├── css
+│   │   ├── global/
+│   │   |   ├── global.css
+│   │   |   └── header.css
+│   │   │
+│   │   ├── login/
+│   │   |   └──login.css
+│   │   │
+│   │   ├── utilidades/
+│   │   |   ├── componentes.css
+│   │   |   ├── cores.css
+│   │   |   └── tipografia.css
+│   │   │
+│   │   └── style.css
+│   │
+│   ├── js/
+│   │
+│   └── login.html
+

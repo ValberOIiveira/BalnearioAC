@@ -1,0 +1,12 @@
+/* === GLOBAL === */
+@import url("./global/global.css");
+
+/* === UTILITÁRIOS === */
+@import url("./utilidades/cores.css");
+@import url("./utilidades/tipografia.css");
+@import url("./utilidades/componentes.css");
+
+/* === PÁGINAS === */
+@import url("./login/login.css");
+
+@import url("./register/register.css");
