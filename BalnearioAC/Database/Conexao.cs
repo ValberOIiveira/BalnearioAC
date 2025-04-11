@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using BalnearioAC.Models;
 
 namespace BalnearioAC.Database
 {
@@ -27,6 +28,18 @@ namespace BalnearioAC.Database
         public DbSet<Models.LogUserActivity> LogUserActivities { get; set; }
         public DbSet<Models.Report> Reports { get; set; }
         public DbSet<Models.ItemSale> ItemSales { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Reservation>()
+                .HasOne(r => r.Visitor)  // Relacionamento com a entidade Visitor
+                .WithMany()
+                .HasForeignKey(r => r.VisitorId)  // Chave estrangeira correta
+                .HasConstraintName("FK_Reservation_Visitor");
+
+            base.OnModelCreating(modelBuilder);
+        }
         
 
 
