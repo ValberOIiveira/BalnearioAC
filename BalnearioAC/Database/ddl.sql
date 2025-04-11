@@ -44,7 +44,7 @@ CREATE TABLE reservations (
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
     id_visitor INTEGER NOT NULL REFERENCES visitors(id) ON DELETE CASCADE,
-    id_kiosk INTEGER NOT NULL REFERENCES kiosk(id) ON DELETE SET NULL
+    id_kiosk INTEGER NOT NULL REFERENCES kiosks(id) ON DELETE SET NULL
 );
 
 CREATE TABLE products (
