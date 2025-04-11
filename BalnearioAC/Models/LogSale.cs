@@ -11,23 +11,19 @@ namespace BalnearioAC.Models
         [Column("id")]
         public int Id { get; set; }
 
+        [ForeignKey("sales")]
         [Column("id_sale")]
         public int? SaleId { get; set; }
-
-        [ForeignKey("SaleId")]
-        public Sale Sale { get; set; }
 
         [Column("action")]
         public string Action { get; set; }
 
         [Column("action_date")]
         public DateTime ActionDate { get; set; } = DateTime.Now;
-
+        
+        [ForeignKey("users")]
         [Column("performed_by")]
         public int? PerformedBy { get; set; }
-
-        [ForeignKey("PerformedBy")]
-        public User User { get; set; }
 
         [Column("details")]
         public string Details { get; set; }

@@ -12,11 +12,9 @@ namespace BalnearioAC.Models
         [Column("id")]
         public int Id { get; set; }
 
+        [ForeignKey("reservations")]
         [Column("id_reservation")]
         public int? ReservationId { get; set; }
-
-        [ForeignKey("ReservationId")]
-        public Reservation Reservation { get; set; }
 
         [Column("action")]
         public string Action { get; set; }
@@ -24,16 +22,8 @@ namespace BalnearioAC.Models
         [Column("action_date")]
         public DateTime ActionDate { get; set; } = DateTime.Now;
 
+        [ForeignKey("users")]
         [Column("performed_by")]
         public int? PerformedBy { get; set; }
-
-        [ForeignKey("PerformedBy")]
-        public User User { get; set; }
-
-        [Column("old_data")]
-        public string OldData { get; set; }
-
-        [Column("new_data")]
-        public string NewData { get; set; }
     }
 }

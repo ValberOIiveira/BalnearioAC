@@ -11,11 +11,9 @@ namespace BalnearioAC.Models
         [Column("id")]
         public int Id { get; set; }
 
+        [ForeignKey("employees")]
         [Column("id_employee")]
         public int? EmployeeId { get; set; }
-
-        [ForeignKey("EmployeeId")]
-        public Employee Employee { get; set; }
 
         [Column("sale_date")]
         public DateTime SaleDate { get; set; }

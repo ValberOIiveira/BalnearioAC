@@ -20,13 +20,12 @@ namespace BalnearioAC.Models
         [Column("id_visitor")]
         public int VisitorId { get; set; }
 
-        [ForeignKey("VisitorId")]
-        public Visitor Visitor { get; set; }
-
+        [ForeignKey("visitors")]
+        [Column("id_visitor")]
+        public int Visitor { get; set; }
+        
+        [ForeignKey("kiosks")]
         [Column("id_kiosk")]
         public int? KioskId { get; set; }
-
-        [ForeignKey("KioskId")]
-        public Kiosk Kiosk { get; set; }
     }
 }
