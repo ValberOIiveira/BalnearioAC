@@ -12,15 +12,22 @@ namespace BalnearioAC.Models
     {
         [Key]
         [Column("id")]
-        public int Id { get; set;}
+        public int Id { get; set; }
+
         [Column("name")]
-        public string Name { get; set; }
+        [Required]
+        public string Name { get; set; } = string.Empty;
+
         [Column("cpf")]
-        public string Cpf { get; set; }
+        public string? Cpf { get; set; }
+
         [Column("age")]
         public DateTime? Age { get; set; }
-        [ForeignKey("users")]
+
         [Column("id_user")]
-        public int Id_user { get; set; }
+        public int? IdUser { get; set; }
+
+        [ForeignKey("IdUser")]
+        public User? User { get; set; }
     }
 }
