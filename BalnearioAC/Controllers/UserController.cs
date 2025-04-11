@@ -21,7 +21,7 @@ namespace BalnearioAC.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<User>> getUser()
+        public async Task<IEnumerable<User>> GetUser()
         {
             return await _context.Users.ToListAsync();
         }
