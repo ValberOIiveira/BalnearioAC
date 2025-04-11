@@ -19,14 +19,15 @@ namespace BalnearioAC.Models
 
         [Column("id_visitor")]
         public int VisitorId { get; set; }  // Apenas o ID da FK
-
-        [ForeignKey("VisitorId")]
-        public Visitor Visitor { get; set; }  // Propriedade de navegação correta
-        
+      
         [Column("id_kiosk")]
         public int? KioskId { get; set; }
 
+        [ForeignKey("VisitorId")]
+        public Visitor Visitor { get; set; } = null!;
+
         [ForeignKey("KioskId")]
-        public Kiosk Kiosk { get; set; }  // Propriedade de navegação para Kiosk
+        public Kiosk? Kiosk { get; set; }
+
     }
 }
