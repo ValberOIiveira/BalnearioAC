@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace BalnearioAC.Models
 {
     [Table("users")]
     public class User
     {
+        [Key]
         [Column("id")]
         public int Id { get; set; }
 
@@ -30,9 +32,8 @@ namespace BalnearioAC.Models
         [Column("passwd")]
         public string Passwd { get; set; }
 
+        [ForeignKey("user_type")]
         [Column("id_user_type")]
         public int Id_user_type { get; set; }
-
-        public UserType User_type { get; set; }
     }
 }
