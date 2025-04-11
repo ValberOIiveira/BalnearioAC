@@ -8,6 +8,7 @@ using BalnearioAC.Models;
 
 namespace BalnearioAC.Controllers
 {
+    //Mudar o tipo da data no banco de dados para timestamp
     [ApiController]
     [Route("[controller]")]
     public class ReservationController : ControllerBase
@@ -36,13 +37,15 @@ namespace BalnearioAC.Controllers
         [HttpPost]
         public async Task<ActionResult<Reservation>> Post([FromBody] Reservation reservation)
         {
-            reservation.StartDate = DateTime.SpecifyKind(reservation.StartDate, DateTimeKind.Utc);
-            reservation.EndDate = DateTime.SpecifyKind(reservation.EndDate, DateTimeKind.Utc);
+            reservation.StartDate = DateTime.SpecifyKind(reservation.StartDate.Date, DateTimeKind.Utc);
+            reservation.EndDate = DateTime.SpecifyKind(reservation.EndDate.Date, DateTimeKind.Utc);
 
             _context.Reservations.Add(reservation);
             await _context.SaveChangesAsync();
+
             return CreatedAtAction(nameof(Get), new { id = reservation.Id }, reservation);
         }
+
 
         [HttpPut("{id}")]
         public async Task<ActionResult<Reservation>> Put(int id, [FromBody] Reservation reservation)
