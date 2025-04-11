@@ -1,0 +1,230 @@
+#paginaVideo {
+    background-image: url("../../assets/img/substitutoVideo.png");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    margin-bottom: 5rem;
+}
+
+.conteudoSobreposto {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    padding: 20px;
+    z-index: 2;
+    max-width: 90%;
+    font: italic 700 2rem/1.25 "Playfair Display", serif;
+}
+
+.btnSaibaMais {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #ECAE2D;
+    color: #482A13;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+#sobreRancho {
+    display: flex;
+    flex-direction: column;
+    font: 400 1rem/1.5 "Quicksand", sans-serif;
+
+}
+
+.historia {
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+    margin: 0 auto;
+
+}
+
+.ftoFamilia {
+    width: 60%;
+    height: auto;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.textoHistoria {
+    width: 40%;
+    height: auto;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    font-size: 1.2rem;
+    color: #482A13;
+}
+
+.textoHistoria h1 {
+    color: #482A13;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.cardsMVE {
+    display: flex;
+    justify-content: center;
+    /* centraliza horizontalmente os cards */
+    padding: 40px;
+    gap: 20px;
+}
+
+.missao,
+.valores,
+.diferencial {
+    width: 33%;
+    /* ou use % se quiser responsivo */
+    background-color: #6BA03D;
+    color: #ffffff;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* centraliza o conteúdo interno */
+    text-align: center;
+    padding: 20px;
+    gap: 10px;
+}
+
+.missao img,
+.valores img,
+.diferencial img {
+    width: 80px;
+    /* tamanho fixo pra ícone ficar proporcional */
+    height: auto;
+    border-radius: 24px 24px 0 0;
+}
+
+.missao h3,
+.valores h3,
+.diferencial h3 {
+    margin: 10px 0 0;
+    font-size: 1.2rem;
+}
+
+.missao p,
+.valores p,
+.diferencial p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+#estrutura {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    font: 400 1rem/1.5 "Quicksand", sans-serif;
+    max-width: 100%;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.textinho {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    max-width: 100%;
+    font-size: 1.2rem;
+    color: #482A13;
+    text-align: center;
+}
+
+.textinho h1 {
+    color: #482A13;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.cardsEstruturas>div:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.cardEstrutura {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1200px;
+    gap: 20px;
+    margin: 20px;
+}
+
+.cafeManha img,
+.balneario img,
+.piscina img,
+.atividadeslazer img,
+.areaCamping img {
+    width: 100%;
+    border-radius: 24px;
+    object-fit: cover;
+    height: 300px;
+}
+
+.cardVerdeEstrutura {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+    background-color: #6BA03D;
+    color: white;
+    border-radius: 24px;
+    font-size: 1.1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+#ftoAcomodacao {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+#ftoAcomodacao img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+
+
+
+
+
+
+
+/*RESPONSIVIDADE*/
+
+@media (max-width: 768px) {
+
+    .cafeManha,
+    .balneario,
+    .piscina,
+    .atividadeslazer,
+    .areaCamping {
+        flex-direction: column !important;
+    }
+
+    .imgCafeManha,
+    .imgBalneario,
+    .imgPiscina,
+    .imgAtividadesLazer,
+    .imgAreaCamping,
+    .textoCafeManha,
+    .textoBalneario,
+    .textoPiscina,
+    .textoAtividadesLazer,
+    .textoAreaCamping {
+        width: 100%;
+    }
+}

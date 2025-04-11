@@ -9,3 +9,5 @@
 /* === PÁGINAS === */
 @import url("./login/loginUser.css");
 @import url("./login/loginEmployee.css");
+
+@import url("./home/home.css");
