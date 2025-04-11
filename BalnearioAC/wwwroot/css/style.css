@@ -7,5 +7,6 @@
 @import url("./utilidades/componentes.css");
 
 /* === PÁGINAS === */
-@import url("./login/loginUser.css");
-@import url("./login/loginEmployee.css");
+@import url("./login/login.css");
+
+@import url("./register/register.css");
