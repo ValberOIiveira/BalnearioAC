@@ -34,6 +34,8 @@ async function registerUser(event)
 
 document.getElementById('register-form').addEventListener('submit', registerUser);
 
+// arrumar o timestamp
+
 
 // Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
 //  ---> System.ArgumentException: Cannot write DateTime with Kind=Unspecified to PostgreSQL type 'timestamp with time zone', only UTC is supported. Note that it's not possible to mix DateTimes with different Kinds in an array, range, or multirange. (Parameter 'value')
