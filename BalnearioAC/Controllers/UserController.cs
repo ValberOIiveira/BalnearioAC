@@ -82,5 +82,6 @@ namespace BalnearioAC.Controllers
 
             return Ok("Usuário excluído com sucesso");
         }
+        
     }
 }
