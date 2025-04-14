@@ -24,7 +24,6 @@ export async function apiRequest(url, method = 'GET', body = null, headers = {})
             // Lança um erro com o código de status e o texto de status da resposta
             throw new Error(`Erro: ${response.status} - ${response.statusText}`);
         }
-
         // Se tudo deu certo, retorna o corpo da resposta convertido em JSON
         return await response.json();
     } catch (error) {
