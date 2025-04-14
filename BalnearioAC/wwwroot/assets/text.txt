@@ -5,6 +5,11 @@ wwwroot
 │   ├── css
 │   │   ├── global/
 │   │   |   ├── global.css
+│   │   |   └── header.css
+│   │   │
+│   │   ├── login/
+│   │   |   └──login.css
+│   │   │
 │   │   |   └── navbar.css
 │   │   │
 │   │   ├── login/
@@ -25,10 +30,12 @@ wwwroot
 │   │
 │   ├── js/
 │   │
+│   └── login.html
 │   ├── loginUser.html
 │   ├── registerUser.html
 │   ├── loginEmployee.html
 │   ├── registerEmployee.html
 │   ├── homeManager.html
 │   ├──
+
 

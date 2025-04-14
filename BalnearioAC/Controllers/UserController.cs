@@ -21,7 +21,7 @@ namespace BalnearioAC.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<User>> GetUser()
+        public async Task<IEnumerable<User>> getUser()
         {
             return await _context.Users.ToListAsync();
         }
@@ -60,7 +60,7 @@ namespace BalnearioAC.Controllers
             existingUser.Phone = user.Phone;
             existingUser.Age = user.Age;
             existingUser.Passwd = user.Passwd;
-                
+            existingUser.Id_user_type = user.Id_user_type;
 
             await _context.SaveChangesAsync();
 

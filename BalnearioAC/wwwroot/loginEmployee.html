@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="./css/style.css" />
 </head>
 
-<body class="bg-4 color-1 font-2-s layout-invertido">
+<body class="bg-4 color-1 font-2-s">
     <main class="login-wrapper">
-        <section class="login-left bg-4">
+        <section class="login-right bg-4">
             <div class="logo-title">
                 <div class="logo-circle">
                     <img src="./assets/img/logo.png" alt="Logo do Rancho da Capivara" />
@@ -25,22 +25,17 @@
             </p>
 
             <form class="login-form font-2-s">
-                <div class="form-group">
-                    <label for="email" class="color-1">E-mail</label>
-                    <input type="email" id="email" placeholder="seu@email.com" />
-                </div>
+                <label for="email" class="color-1">E-mail</label>
+                <input type="email" id="email" placeholder="seu@email.com" />
 
-                <div class="form-group">
-                    <label for="senha" class="color-1">Senha</label>
-                    <input type="password" id="senha" placeholder="••••••••" />
-                </div>
+                <label for="senha" class="color-1">Senha</label>
+                <input type="password" id="senha" placeholder="••••••••" />
 
-                <div class="form-actions">
-                    <button type="submit" class="btn-login bg-2 color-0 font-2-s">Entrar</button>
-                    <div class="divider font-2-s">ou</div>
-                    <button type="button" class="btn-create color-3 font-2-s"
-                        onclick="window.location.href='./registerEmployee.html'">Criar nova conta</button>
-                </div>
+                <button type="submit" class="btn-login bg-2 color-0 font-2-s">Entrar</button>
+
+                <div class="divider font-2-s">ou</div>
+
+                <button type="button" class="btn-create color-3 font-2-s">Criar nova conta</button>
             </form>
 
             <footer class="footer font-2-s color-1">
@@ -48,8 +43,8 @@
             </footer>
         </section>
 
-        <section class="login-right bg-2 color-0">
-            <div class="right-content">
+        <section class="login-left bg-2 color-0">
+            <div class="left-content">
                 <div class="icon-circle font-2-s">≋</div>
                 <h2 class="slogan font-1-xl">Relaxe & Aproveite</h2>
                 <p class="slogan-text font-2-s">

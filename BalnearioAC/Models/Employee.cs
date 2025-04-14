@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BalnearioAC.Models
 {
@@ -26,6 +23,7 @@ namespace BalnearioAC.Models
         [Column("admission_date")]
         public DateTime? AdmissionDate { get; set; }
 
+        // Relacionamento com a tabela User
         [ForeignKey("IdUser")]
         public User? User { get; set; }
     }

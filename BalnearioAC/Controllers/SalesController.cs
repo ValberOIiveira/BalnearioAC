@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BalnearioAC.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class SalesController : ControllerBase
     {
         private readonly Conexao _context;

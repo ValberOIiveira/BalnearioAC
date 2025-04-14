@@ -77,5 +77,14 @@ namespace BalnearioAC.Controllers
 
             return Ok("Produto excluído com sucesso");
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            var produto = _context.Products.Find(id);
+            if (produto == null) return NotFound();
+            return Ok(produto);
+        }
+
     }
 }
