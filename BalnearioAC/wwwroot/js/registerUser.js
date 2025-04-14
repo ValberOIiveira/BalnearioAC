@@ -24,6 +24,7 @@ async function registerUser(event)
             console.log(response);
             
         }
+        
 
     } catch (error) {
         console.log(error);
