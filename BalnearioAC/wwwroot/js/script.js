@@ -1,4 +1,4 @@
-﻿async function apiRequest(url, method = 'GET', body = null, headers = {}) {
+﻿export async function apiRequest(url, method = 'GET', body = null, headers = {}) {
     try {
         const config = {
             method,
