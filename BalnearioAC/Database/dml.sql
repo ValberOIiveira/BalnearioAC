@@ -1,4 +1,4 @@
-INSERT INTO user_type (name) VALUES ('Administrador'), ('Funcionário'), ('Visitante');
+INSERT INTO user_type (name) VALUES ('Administrador'), ('Funcionário'), ('Visitante'), ('Usuário');
 
 INSERT INTO users (name, cpf, email, phone, age, passwd, id_user_type)
 VALUES 
