@@ -1,6 +1,9 @@
 using BalnearioAC.Database;
 using Microsoft.EntityFrameworkCore;
+using NodaTime;
+using Npgsql;
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 var builder = WebApplication.CreateBuilder(args);
 
 // Configuração do logging
@@ -23,10 +26,15 @@ builder.Services.AddCors(options =>
     });
 });
 
-// Configuração do banco de dados
+// Configuração do banco de dados com suporte a timezone
 builder.Services.AddDbContext<Conexao>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"),
+        o => 
+        {
+            o.UseNodaTime();
+            
+        });
 });
 
 var app = builder.Build();
@@ -42,9 +50,6 @@ if (app.Environment.IsDevelopment())
 
 // Habilita CORS (antes de UseRouting)
 app.UseCors("AllowAll");
-
-// Redirecionamento HTTPS (opcional)
-// app.UseHttpsRedirection();
 
 // Arquivos estáticos
 app.UseDefaultFiles();

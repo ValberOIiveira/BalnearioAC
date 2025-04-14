@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using BalnearioAC.Database;
 using BalnearioAC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace BalnearioAC.Controllers
 {
@@ -14,16 +14,26 @@ namespace BalnearioAC.Controllers
     public class UserController : ControllerBase
     {
         private readonly Conexao _context;
+        private readonly TimeZoneInfo _brasilTimeZone;
 
         public UserController(Conexao context)
         {
             _context = context;
+            _brasilTimeZone = TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time");
         }
 
         [HttpGet]
-        public async Task<IEnumerable<User>> GetUser()
+        public async Task<ActionResult<IEnumerable<User>>> GetUser()
         {
-            return await _context.Users.ToListAsync();
+            var users = await _context.Users.ToListAsync();
+            return users.Select(u => 
+            {
+                if (u.Age.HasValue)
+                {
+                    u.Age = TimeZoneInfo.ConvertTimeFromUtc(u.Age.Value, _brasilTimeZone);
+                }
+                return u;
+            }).ToList();
         }
 
         [HttpPost]
@@ -36,6 +46,12 @@ namespace BalnearioAC.Controllers
 
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
+
+            // Converte de volta para mostrar no response
+            if (user.Age.HasValue)
+            {
+                user.Age = TimeZoneInfo.ConvertTimeFromUtc(user.Age.Value, _brasilTimeZone);
+            }
 
             return user.Id > 0 ? Ok(user) : BadRequest("Erro ao cadastrar usuário");
         }
@@ -58,14 +74,19 @@ namespace BalnearioAC.Controllers
             existingUser.Cpf = user.Cpf;
             existingUser.Email = user.Email;
             existingUser.Phone = user.Phone;
-            existingUser.Age = user.Age;
+            existingUser.Age = user.Age; // Já é convertido automaticamente pelo model
             existingUser.Passwd = user.Passwd;
             existingUser.Id_user_type = user.Id_user_type;
 
             await _context.SaveChangesAsync();
 
-            return Ok(existingUser);
+            // Converte de volta para mostrar no response
+            if (existingUser.Age.HasValue)
+            {
+                existingUser.Age = TimeZoneInfo.ConvertTimeFromUtc(existingUser.Age.Value, _brasilTimeZone);
+            }
 
+            return Ok(existingUser);
         }
 
         [HttpDelete("{id}")]
@@ -82,6 +103,5 @@ namespace BalnearioAC.Controllers
 
             return Ok("Usuário excluído com sucesso");
         }
-        
     }
 }
