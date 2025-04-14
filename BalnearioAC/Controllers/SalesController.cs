@@ -77,5 +77,30 @@ namespace BalnearioAC.Controllers
 
             return Ok("Venda excluída com sucesso");
         }
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<object>>> GetSalesWithItems()
+        {
+            var salesWithItems = await _context.Sales
+                .Include(s => s.Employee)
+                .Include(s => s.ItemsSale)
+                    .ThenInclude(i => i.Product)
+                .Select(s => new
+                {
+                    s.Id,
+                    s.SaleDate,
+                    s.TotalValue,
+                    EmployeeName = s.Employee.Name,
+                    PaymentMethod = "PIX", // Estático como solicitado
+                    Items = s.ItemsSale.Select(i => new
+                    {
+                        i.Product.Name,
+                        i.Qtd,
+                        i.Product.Price
+                    })
+                })
+                .ToListAsync();
+
+            return Ok(salesWithItems);
+        }
     }
 }

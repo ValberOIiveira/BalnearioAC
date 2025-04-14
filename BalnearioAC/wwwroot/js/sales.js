@@ -1,3 +1,5 @@
+import { apiRequest } from "./script.js";
+
 const produtos = [
     { nome: 'Cerveja Pilsen', categoria: 'Bebidas', preco: 12.00 },
     { nome: 'Refrigerante Cola', categoria: 'Bebidas', preco: 8.00 },
@@ -92,3 +94,30 @@ function filtrarProdutos() {
 }
 
 document.addEventListener("DOMContentLoaded", () => renderizarProdutos());
+
+
+async function GetSales(){
+    try {
+
+        const response = await apiRequest('http://localhost:5237/sales', 'GET');
+        const table = document.getElementById('vendas');
+        table.innerHTML = '';
+        response.forEach((sale) => {
+            const row = `
+                <div>${sale.date}</div>
+                <div>3</div>
+                <div>R$ 38,00</div>
+                <div>PIX</div>
+                <div class="table-actions">
+                    <button class="btn btn-outline">Editar</button>
+                </div>
+            `
+            table.innerHTML += row
+        })
+
+    } catch (error) {
+        console.log(error +"muito burro");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => GetSales());
