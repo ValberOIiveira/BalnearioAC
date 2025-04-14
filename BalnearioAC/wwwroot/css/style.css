@@ -1,5 +1,7 @@
 /* === GLOBAL === */
 @import url("./global/global.css");
+@import url("./global/navbar.css");
+@import url("./global/modal.css");
 
 /* === UTILITÁRIOS === */
 @import url("./utilidades/cores.css");
@@ -8,5 +10,5 @@
 
 /* === PÁGINAS === */
 @import url("./login/login.css");
-
 @import url("./register/register.css");
+@import url("./home/salesManager.css");
