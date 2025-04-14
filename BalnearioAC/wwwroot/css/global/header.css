@@ -1,0 +1,47 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
+    background-color: #6BA03D;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.4s ease, backdrop-filter 0.4s ease;
+    justify-content: center;
+  }
+  
+  /* Quando estiver no topo (transparente) */
+  header.transparent {
+    background-color: transparent;
+    backdrop-filter: none; /* remove qualquer blur caso queira */
+  }
+  
+  /* Estilo extra pra nav dentro do header */
+  header nav {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    
+  }
+
+.logo img {
+    width: 100px;
+    height: 100px;
+}
+
+
+a {
+    color: #482A13;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+a:hover {
+    color: #ECAE2D;
+    transition: color 0.3s ease;
+}
