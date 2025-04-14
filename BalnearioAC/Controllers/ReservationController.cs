@@ -37,14 +37,31 @@ namespace BalnearioAC.Controllers
         [HttpPost]
         public async Task<ActionResult<Reservation>> Post([FromBody] Reservation reservation)
         {
-            reservation.StartDate = DateTime.SpecifyKind(reservation.StartDate.Date, DateTimeKind.Utc);
-            reservation.EndDate = DateTime.SpecifyKind(reservation.EndDate.Date, DateTimeKind.Utc);
+            // Verificar se o visitante existe
+            var visitor = await _context.Visitors.FindAsync(reservation.VisitorId);
+            if (visitor == null)
+            {
+                return BadRequest("Visitor not found");
+            }
+
+            // Verificar se o quiosque existe
+            var kiosk = await _context.Kiosks.FindAsync(reservation.KioskId);
+            if (kiosk == null)
+            {
+                return BadRequest("Kiosk not found");
+            }
+
+            // Se ambos o visitante e o quiosque forem encontrados, cria a reserva
+            reservation.StartDate = DateTime.SpecifyKind(reservation.StartDate, DateTimeKind.Utc);
+            reservation.EndDate = DateTime.SpecifyKind(reservation.EndDate, DateTimeKind.Utc);
 
             _context.Reservations.Add(reservation);
             await _context.SaveChangesAsync();
 
+            // Retorna a reserva criada
             return CreatedAtAction(nameof(Get), new { id = reservation.Id }, reservation);
         }
+
 
 
         [HttpPut("{id}")]

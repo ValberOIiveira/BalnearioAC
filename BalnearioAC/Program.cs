@@ -1,65 +1,37 @@
 using BalnearioAC.Database;
 using Microsoft.EntityFrameworkCore;
-using NodaTime;
-using Npgsql;
 
-AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 var builder = WebApplication.CreateBuilder(args);
+//criar a aplicação web
 
-// Configuração do logging
-builder.Logging.AddConsole();
-
-// Adiciona serviços
 builder.Services.AddControllers();
+//Adiciona o serviço de controllers
+
 builder.Services.AddControllersWithViews();
+//Adiciona o serviço de controllers com views
+
 builder.Services.AddEndpointsApiExplorer();
+//Adiciona o serviço de explorador de endpoints
+
 builder.Services.AddSwaggerGen();
+//Adiciona o serviço de gerador de Swagger
 
-// Configuração do CORS
-builder.Services.AddCors(options =>
+builder.Services.AddDbContext<Conexao>(options => 
 {
-    options.AddPolicy("AllowAll", builder =>
-    {
-        builder.AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader();
-    });
-});
+    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection"));
+});//Adiciona o serviço de banco de dados
 
-// Configuração do banco de dados com suporte a timezone
-builder.Services.AddDbContext<Conexao>(options =>
+var app = builder.Build(); //vai construir a aplicação
+if(app.Environment.IsDevelopment())
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"),
-        o => 
-        {
-            o.UseNodaTime();
-            
-        });
-});
-
-var app = builder.Build();
-
-// Middlewares na ordem CORRETA:
-
-// Ativa o Swagger (documentação da API)
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwagger(); //Vai usar o Swagger
+    app.UseSwaggerUI(); //Vai usar o Swagger UI
+    app.UseHttpsRedirection(); //Vai usar o HTTPS
+    app.UseAuthorization(); //Vai usar a autorização
 }
 
-// Habilita CORS (antes de UseRouting)
-app.UseCors("AllowAll");
-
-// Arquivos estáticos
-app.UseDefaultFiles();
-app.UseStaticFiles();
-
-// Roteamento e autorização
-app.UseRouting();
-app.UseAuthorization();
-
-// Mapeamento de endpoints
-app.MapControllers();
-
-app.Run();
+app.UseDefaultFiles(); //Vai usar o arquivo padrão
+app.UseStaticFiles(); //Vai usar o arquivo estático
+app.UseHttpsRedirection();
+app.MapControllers(); //Var mapear os controladores
+app.Run(); //Vai rodar a aplicação
