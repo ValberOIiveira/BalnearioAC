@@ -10,6 +10,17 @@ wwwroot
 │   │   ├── login/
 │   │   |   └──login.css
 │   │   │
+│   │   |   └── navbar.css
+│   │   │
+│   │   ├── login/
+│   │   |   └── login.css
+│   │   |
+│   │   ├── register/
+│   │   |   └── register.css
+│   │   │
+│   │   ├── home/
+│   │   |   └── homeManager.css
+│   │   |
 │   │   ├── utilidades/
 │   │   |   ├── componentes.css
 │   │   |   ├── cores.css
@@ -20,4 +31,11 @@ wwwroot
 │   ├── js/
 │   │
 │   └── login.html
+│   ├── loginUser.html
+│   ├── registerUser.html
+│   ├── loginEmployee.html
+│   ├── registerEmployee.html
+│   ├── homeManager.html
+│   ├──
+
 

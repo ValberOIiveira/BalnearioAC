@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BalnearioAC.Models
 {
@@ -13,14 +10,21 @@ namespace BalnearioAC.Models
         [Key]
         [Column("id")]
         public int Id { get; set; }
-        [ForeignKey("users")]
+
         [Column("id_user")]
-        public int Id_user { get; set; }
+        public int? IdUser { get; set; }
+
         [Column("role")]
         public string? Role { get; set; }
+
         [Column("salary")]
-        public double Salary { get; set; }
+        public decimal? Salary { get; set; }
+
         [Column("admission_date")]
-        public DateTime Admission_date { get; set; }
+        public DateTime? AdmissionDate { get; set; }
+
+        // Relacionamento com a tabela User
+        [ForeignKey("IdUser")]
+        public User? User { get; set; }
     }
 }

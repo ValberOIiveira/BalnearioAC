@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./css/style.css" />
 </head>
 
-<body class="bg-4 color-1 font-2-s">
+<body class="bg-4 color-1 font-2-s layout-normal">
     <main class="login-wrapper">
         <section class="login-left bg-4">
             <div class="logo-title">
@@ -25,17 +25,23 @@
             </p>
 
             <form class="login-form font-2-s">
-                <label for="email" class="color-1">E-mail</label>
-                <input type="email" id="email" placeholder="seu@email.com" />
 
-                <label for="senha" class="color-1">Senha</label>
-                <input type="password" id="senha" placeholder="••••••••" />
+                <div class="form-group">
+                    <label for="email" class="color-1">E-mail</label>
+                    <input type="email" id="email" placeholder="seu@email.com" />
+                </div>
 
-                <button type="submit" class="btn-login bg-2 color-0 font-2-s">Entrar</button>
+                <div class="form-group">
+                    <label for="senha" class="color-1">Senha</label>
+                    <input type="password" id="senha" placeholder="••••••••" />
+                </div>
 
-                <div class="divider font-2-s">ou</div>
-
-                <button type="button" class="btn-create color-3 font-2-s">Criar nova conta</button>
+                <div class="form-actions">
+                    <button type="submit" class="btn-login bg-2 color-0 font-2-s">Entrar</button>
+                    <div class="divider font-2-s">ou</div>
+                    <button type="button" class="btn-create color-3 font-2-s"
+                        onclick="window.location.href='./registerUser.html'">Criar nova conta</button>
+                </div>
             </form>
 
             <footer class="footer font-2-s color-1">

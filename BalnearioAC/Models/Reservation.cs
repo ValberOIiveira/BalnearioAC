@@ -18,14 +18,16 @@ namespace BalnearioAC.Models
         public DateTime EndDate { get; set; }
 
         [Column("id_visitor")]
-        public int VisitorId { get; set; }
+        public int VisitorId { get; set; }  
 
-        [ForeignKey("visitors")]
-        [Column("id_visitor")]
-        public int Visitor { get; set; }
-        
-        [ForeignKey("kiosks")]
         [Column("id_kiosk")]
         public int? KioskId { get; set; }
+
+        
+        [ForeignKey("VisitorId")]
+        public Visitor? Visitor { get; set; }
+
+        [ForeignKey("KioskId")]
+        public Kiosk? Kiosk { get; set; }
     }
 }
