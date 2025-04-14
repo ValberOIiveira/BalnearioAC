@@ -1,6 +1,6 @@
-# 🌊 Balneário Águas Claras — Sistema de Gestão e Presença Digital
+# 🌊 Balneário Rancho da Capivara — Sistema de Gestão e Presença Digital
 
-Bem-vindo ao repositório oficial do sistema de gestão do Balneário Águas Claras — um espaço de lazer familiar que agora se transforma em um dos pontos turísticos mais completos da região!
+Bem-vindo ao repositório oficial do sistema de gestão do Balneário Rancho da Capivara — um espaço de lazer familiar que agora se transforma em um dos pontos turísticos mais completos da região!
 
 > Este projeto foi desenvolvido como desafio prático, com prazo de entrega entre os dias **09 e 16 de abril de 2025**.
 
@@ -75,7 +75,7 @@ Abaixo está o Diagrama Entidade-Relacionamento (DER) que representa visualmente
 | Back-end       | ASP.NET Core com Entity Framework   |
 | Banco de Dados | PostgreSQL                          |
 | Front-end      | HTML, CSS, JavaScript               |
-| Organização    | Trello (kanban com tarefas e prazos)|
+| Organização    | Trello                              |
 
 ---
 
