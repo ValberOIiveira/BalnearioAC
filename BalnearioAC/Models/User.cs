@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,25 +26,9 @@ namespace BalnearioAC.Models
         [Column("phone")]
         public string? Phone { get; set; }
 
-        private DateTime? _age;
-        
         [Column("age")]
-        public DateTime? Age 
-        {
-            get => _age;
-            set{
-                if (value.HasValue)
-                {
-                    
-                    var brasilTimeZone = TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time");
-                    _age = TimeZoneInfo.ConvertTimeToUtc(value.Value, brasilTimeZone);
-                }
-                else
-                {
-                    _age = null;
-                }
-            }
-        }
+        public DateTime? Age { get; set; }
+
         [Column("passwd")]
         public string Passwd { get; set; }
 

@@ -8,7 +8,7 @@ using BalnearioAC.Database;
 
 namespace BalnearioAC.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class KioskController : ControllerBase
     {
