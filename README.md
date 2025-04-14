@@ -75,7 +75,7 @@ Abaixo está o Diagrama Entidade-Relacionamento (DER) que representa visualmente
 | Back-end       | ASP.NET Core com Entity Framework   |
 | Banco de Dados | PostgreSQL                          |
 | Front-end      | HTML, CSS, JavaScript               |
-| Organização    | Trello (kanban com tarefas e prazos)|
+| Organização    | Trello                              |
 
 ---
 
