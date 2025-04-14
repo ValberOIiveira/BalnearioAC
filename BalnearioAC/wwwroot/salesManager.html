@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rancho da Capivara - Vendas</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/modal.css" />
+    <link rel="shortcut icon" href="./assets/img/logo.png" type="image/x-icon" />
+    <script src="https://kit.fontawesome.com/a2e00f7c45.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="layout">
+        <!-- NAVBAR PRINCIPAL -->
+        <aside class="sidebar" role="complementary">
+            <header>
+                <img src="./assets/img/logo-vertical.png" alt="Logo Rancho da Capivara" />
+            </header>
+
+            <nav aria-label="Menu principal">
+                <ul>
+                    <li><a href="#"><i class="fa-solid fa-table-columns"></i> Dashboard</a></li>
+                    <li><a href="#"><i class="fa-solid fa-calendar-days"></i> Reservas</a></li>
+                    <li><a href="#"><i class="fa-solid fa-user-group"></i> Visitantes</a></li>
+                    <li class="active"><a href="#"><i class="fa-solid fa-cart-shopping"></i> Vendas</a></li>
+                    <li><a href="#"><i class="fa-solid fa-chart-column"></i> Relatórios</a></li>
+                </ul>
+            </nav>
+
+            <footer>
+                <p>Rancho da Capivara © 2025</p>
+            </footer>
+        </aside>
+
+        <!-- CONTEUDO PRINCIPAL -->
+        <main class="dashboard">
+            <section class="container" aria-labelledby="titulo-vendas">
+                <header class="sales-header">
+                    <div>
+                        <h1 id="titulo-vendas" class="font-1-xl color-1">Vendas</h1>
+                        <p class="font-2-s color-1">Gerencie as vendas e produtos do bar.</p>
+                    </div>
+                    <div class="sales-actions">
+                        <button class="btn btn-green" onclick="openModal('modalVenda')">
+                            <i class="fa-solid fa-cart-plus"></i> Nova Venda
+                        </button>
+                        <button class="btn btn-outline" onclick="openModal('modalProduto')">
+                            <i class="fa-solid fa-plus"></i> Novo Produto
+                        </button>
+                    </div>
+                </header>
+
+                <!-- ESTATÍSTICAS -->
+                <section class="sales-cards" aria-label="Resumo de vendas">
+                    <article class="sales-card">
+                        <h4 class="color-2">Vendas Hoje</h4>
+                        <h2 class="color-1">R$ 3.240,00</h2>
+                        <p class="font-2-s color-2">↑ 8% desde ontem</p>
+                    </article>
+                    <article class="sales-card">
+                        <h4 class="color-2">Produtos Vendidos</h4>
+                        <h2 class="color-1">142</h2>
+                        <p class="font-2-s color-2">↑ 12% desde ontem</p>
+                    </article>
+                    <article class="sales-card">
+                        <h4 class="color-3">Ticket Médio</h4>
+                        <h2 class="color-1">R$ 28,50</h2>
+                        <p class="font-2-s color-3">↓ 3% desde ontem</p>
+                    </article>
+                </section>
+
+                <!-- ABAS -->
+                <div class="sales-tabs">
+                    <button class="tab active" onclick="switchTab('produtos')">Produtos</button>
+                    <button class="tab" onclick="switchTab('vendas')">Vendas</button>
+                </div>
+
+                <!-- CONTROLES DE FILTRO -->
+                <section class="sales-controls" aria-label="Filtros e busca">
+                    <label for="buscar-produto">Buscar produto</label>
+                    <input type="text" id="buscar-produto" class="input-search" placeholder="Buscar produto..." />
+                </section>
+
+                <!-- TABELA DE PRODUTOS -->
+                <section class="sales-table tab-content active" id="tab-produtos" aria-label="Tabela de produtos">
+                    <div class="table-header">
+                        <div>Produto</div>
+                        <div>Categoria</div>
+                        <div>Preço</div>
+                        <div>Estoque</div>
+                        <div>Vendidos</div>
+                        <div>Ações</div>
+                    </div>
+                    <div class="table-row">
+                        <div>Água Mineral</div>
+                        <div>Bebidas</div>
+                        <div>R$ 5.00</div>
+                        <div>200</div>
+                        <div>58</div>
+                        <div class="table-actions">
+                            <button class="btn btn-outline">Editar</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="sales-table tab-content" id="tab-vendas" aria-label="Tabela de vendas">
+                    <div class="table-header">
+                        <div>Data</div>
+                        <div>Itens</div>
+                        <div>Total</div>
+                        <div>Pagamento</div>
+                        <div>Ações</div>
+                    </div>
+                    <div class="table-row">
+                        <div>12/04/2025</div>
+                        <div>3</div>
+                        <div>R$ 38,00</div>
+                        <div>PIX</div>
+                        <div class="table-actions">
+                            <button class="btn btn-outline">Editar</button>
+                        </div>
+                    </div>
+                </section>
+
+            </section>
+        </main>
+    </div>
+
+    <!-- MODAL NOVO PRODUTO -->
+    <div id="modalProduto" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modalProduto')">&times;</span>
+            <h2>Novo Produto</h2>
+            <form>
+                <input type="text" placeholder="Nome do Produto" required />
+                <input type="text" placeholder="Categoria" required />
+                <input type="number" placeholder="Preço" required />
+                <input type="number" placeholder="Estoque Inicial" required />
+                <button type="submit">Adicionar Produto</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL NOVA VENDA -->
+    <div id="modalVenda" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modalVenda')">&times;</span>
+            <h2 class="color-2">Nova Venda</h2>
+            <p class="font-2-s color-1">Adicione produtos ao carrinho para completar a venda.</p>
+
+            <div class="modal-grid">
+                <div class="modal-lista-produtos">
+                    <label for="buscar-produto-modal" class="sr-only">Buscar produto</label>
+                    <input type="text" id="buscar-produto-modal" class="input-search" placeholder="Buscar produto..."
+                        oninput="filtrarProdutos()" />
+                    <ul id="lista-produtos">
+                        <!-- produtos adicionados dinamicamente via JS -->
+                    </ul>
+                </div>
+
+                <div class="modal-carrinho">
+                    <ul id="carrinho-produtos">
+                        <!-- itens do carrinho -->
+                    </ul>
+                    <div class="modal-total">
+                        <strong>Total:</strong> <span id="valor-total">R$ 0,00</span>
+                    </div>
+                    <div class="modal-acoes">
+                        <button class="btn btn-outline" onclick="limparCarrinho()">Limpar</button>
+                        <button class="btn btn-green" onclick="finalizarVenda()">Finalizar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="./js/modal&switch.js"></script>
+<script src="./js/sales.js"></script>
+
+</html>
