@@ -39,6 +39,7 @@ async function GetSales(event) {
                 document.getElementById('Sales').appendChild(Sale);
             }
         }
+        
     }   
     catch(error){
         console.log(error);

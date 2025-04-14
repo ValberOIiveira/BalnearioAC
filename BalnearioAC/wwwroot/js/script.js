@@ -16,6 +16,7 @@ export async function apiRequest(url, method = 'GET', body = null, headers = {})
             config.body = JSON.stringify(body); // Converte o objeto para JSON antes de enviar
         }
 
+        
         // Faz a requisição usando fetch com a URL e configuração definidas
         const response = await fetch(url, config);
 
