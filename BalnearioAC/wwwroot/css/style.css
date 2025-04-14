@@ -1,5 +1,6 @@
 /* === GLOBAL === */
 @import url("./global/global.css");
+@import url("./global/header.css");
 
 /* === UTILITÁRIOS === */
 @import url("./utilidades/cores.css");
