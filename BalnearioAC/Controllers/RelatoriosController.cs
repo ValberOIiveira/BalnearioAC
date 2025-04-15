@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BalnearioAC.Database;
+using BalnearioAC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,34 +21,16 @@ namespace BalnearioAC.Controllers
         }
 
         [HttpGet("reservations")]
-        public async Task<ActionResult<IEnumerable<object>>> GetReservationsReport(
-            [FromQuery] DateTime? startDate = null,
-            [FromQuery] DateTime? endDate = null)
+        public async Task<IEnumerable<ReportReservation>> GetReportReservations()
         {
-            var query = _context.Reservations
-                .Include(r => r.Visitor)
-                .Include(r => r.Kiosk)
-                .AsQueryable();
-
-            if (startDate.HasValue)
-                query = query.Where(r => r.StartDate >= startDate.Value);
-
-            if (endDate.HasValue)
-                query = query.Where(r => r.EndDate <= endDate.Value);
-
-            var reservations = await query
-                .Select(r => new
-                {
-                    r.Id,
-                    StartDate = r.StartDate,
-                    EndDate = r.EndDate,
-                    Visitor = new { r.Visitor.Id, r.Visitor.Name, r.Visitor.Cpf },
-                    Kiosk = new { r.Kiosk.Id, r.Kiosk.Capacity, r.Kiosk.Price }
-                })
+            return await _context.ReportReservations
+                .Include(r => r.User)   
+                .Include(r => r.Kiosk)  
+                .Where(r => r.UserId != null)   
                 .ToListAsync();
-
-            return Ok(reservations);
         }
+
+
 
         [HttpGet("sales")]
         public async Task<ActionResult<IEnumerable<object>>> GetSalesReport(

@@ -40,10 +40,10 @@ namespace BalnearioAC.Database
                 .HasConstraintName("FK_ReportReservation_Kiosk");
 
             modelBuilder.Entity<ReportReservation>()
-                .HasOne(r => r.Visitor)
+                .HasOne(r => r.User)
                 .WithMany()
-                .HasForeignKey(r => r.VisitorId)
-                .HasConstraintName("FK_ReportReservation_Visitor");
+                .HasForeignKey(r => r.UserId)
+                .HasConstraintName("FK_ReportReservation_User");
 
             base.OnModelCreating(modelBuilder);
         }

@@ -7,8 +7,9 @@ async function listarProdutos() {
     try {
         const data = await apiRequest('http://localhost:5237/api/Relatorios/reservations');
 
-        console.log(data);
-        // Ordena os produtos do maior para o menor ID
+        console.log(data);  // Verifique os dados recebidos
+
+        // Ordena os dados do menor para o maior ID
         data.sort((a, b) => a.id - b.id);
 
         const tbody = document.querySelector("#tabelaReporteReservas tbody");
@@ -18,17 +19,16 @@ async function listarProdutos() {
             const tr = document.createElement("tr");
             tr.innerHTML = `
                 <td>${report.id}</td>
-                <td>${report.reportDate}</td>
-                <td>${report.report.visitor.name}</td>
-                <td>${report.report.kiosk.id}</td>
-                <td>${report.startDate}</td>
-                <td>${report.endDate}</td>
+                <td>${new Date(report.reportDate).toLocaleDateString()}</td>
+                <td>${report.kiosk ? report.kiosk.id : '-'}</td>
+                <td>${report.user ? report.user.name : '-'}</td>
+                <td>${new Date(report.startDate).toLocaleDateString()}</td>
+                <td>${new Date(report.endDate).toLocaleDateString()}</td>
             `;
-
             tbody.appendChild(tr);
         });
-
     } catch (error) {
-        console.error("Erro ao listar produtos:", error);
+        console.error('Erro ao carregar os dados:', error);
     }
 }
+

@@ -16,8 +16,9 @@ namespace BalnearioAC.Models
 
         [Column("kiosk_id")]
         public int? KioskId { get; set; }
-        [Column("visitor_id")]
-        public int? VisitorId { get; set; }
+
+        [Column("user_id")]
+        public int? UserId { get; set; }
 
         [Column("start_date")]
         public DateTime? StartDate { get; set; }
@@ -27,7 +28,8 @@ namespace BalnearioAC.Models
 
         [ForeignKey("KioskId")]
         public Kiosk? Kiosk { get; set; }
-        [ForeignKey("VisitorId")]
-        public Visitor? Visitor { get; set; }
+
+        [ForeignKey("UserId")]
+        public User? User { get; set; }
     }
 }
