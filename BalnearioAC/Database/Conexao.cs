@@ -28,6 +28,7 @@ namespace BalnearioAC.Database
         public DbSet<Models.LogUserActivity> LogUserActivities { get; set; }
         public DbSet<Models.Report> Reports { get; set; }
         public DbSet<Models.ItemSale> ItemSales { get; set; }
+         public DbSet<ReportSalesByEmployee> ReportSalesByEmployee { get; set; }
         
 
 

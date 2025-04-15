@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace BalnearioAC.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class RelatoriosController : ControllerBase
     {
         private readonly Conexao _context;
@@ -119,6 +119,35 @@ namespace BalnearioAC.Controllers
                 .ToListAsync();
 
             return Ok(activities);
+        }
+         [HttpGet("salesbyemployee")]
+        public async Task<ActionResult<IEnumerable<object>>> GetSalesByEmployeeReport(
+            [FromQuery] DateTime? startDate = null,
+            [FromQuery] DateTime? endDate = null)
+        {
+            // Consultar a tabela ReportSalesByEmployee
+            var query = _context.ReportSalesByEmployee.AsQueryable(); 
+
+            // Filtrando por data, se fornecido
+            if (startDate.HasValue)
+                query = query.Where(r => r.ReportDate >= startDate.Value);
+
+            if (endDate.HasValue)
+                query = query.Where(r => r.ReportDate <= endDate.Value);
+
+            // Realizando a consulta e retornando os resultados
+            var salesByEmployeeReport = await query
+                .Select(r => new
+                {
+                    r.Id,
+                    ReportDate = r.ReportDate.ToString("yyyy-MM-dd"), // Formato de data sem hora
+                    r.EmployeeName,
+                    r.TotalSales,
+                    r.TotalValue
+                })
+                .ToListAsync();
+
+            return Ok(salesByEmployeeReport);
         }
     }
 }
