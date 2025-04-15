@@ -1,3 +1,4 @@
+<!-- reservationUser.html ajustado -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -17,135 +18,84 @@
 
 <body>
     <div class="layout">
-        <!-- SIDEBAR -->
         <aside class="sidebar" role="complementary">
-            <header class="sidebar-header">
-                <h3 class="font-2-s color-1">João Silva</h3>
-                <p class="font-2-xs color-5">joao.silva@email.com</p>
-            </header>
-
-            <nav class="sidebar-nav" aria-label="Menu lateral">
-                <ul>
-                    <li><a href="./homeUser.html"><i class="fa-solid fa-house"></i> Início</a></li>
-                    <li class="active"><a href="./reservationUser.html"><i class="fa-solid fa-calendar-check"></i>
-                            Minhas Reservas</a>
-                    </li>
-                    <li><a href="./home.html"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
-                </ul>
-            </nav>
-
+            <div class="container-nav">
+                <header class="sidebar-header">
+                    <img src="./assets/img/logo-vertical.png" alt="Logo Rancho da Capivara" />
+                </header>
+                <nav class="sidebar-nav" aria-label="Menu lateral">
+                    <ul>
+                        <li><a href="./homeUser.html"><i class="fa-solid fa-house"></i> Início</a></li>
+                        <li class="active"><a href="./reservationUser.html"><i class="fa-solid fa-calendar-check"></i>
+                                Minhas Reservas</a></li>
+                        <li><a href="./home.html"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
+                    </ul>
+                </nav>
+            </div>
             <footer class="sidebar-footer">
                 <p class="font-2-xs color-5">Rancho da Capivara © 2025</p>
             </footer>
         </aside>
 
-
-        <!-- CONTEÚDO PRINCIPAL -->
         <main class="dashboard">
             <section class="container">
                 <header class="user-welcome">
                     <h1 class="font-1-xl color-1">Bem-vindo, João!</h1>
-                    <p class="font-2-s color-1">Planeje a sua estadia perfeita no Rancho da Capivara. Selecione um
-                        quarto e serviços adicionais.</p>
+                    <p class="font-2-s color-1">Planeje a sua estadia perfeita no Rancho da Capivara. Escolha uma data e
+                        espaço.</p>
                 </header>
 
                 <div class="reservation-grid">
-                    <!-- FORMULÁRIO DE RESERVA -->
                     <section class="reservation-form">
-                        <h2 class="font-1-l color-1">Selecione seu Quarto</h2>
-                        <p class="font-2-s color-5">Escolha o quarto que melhor atende às suas necessidades</p>
-
+                        <h2 class="font-1-l color-1">Selecione seu Espaço</h2>
+                        <p class="font-2-s color-5">Escolha o que melhor atende às suas necessidades</p>
                         <div class="form-row">
                             <div>
                                 <label>Data de Check-in</label>
-                                <input type="date" value="2025-04-17" />
+                                <input type="date" id="data-checkin" />
                             </div>
                             <div>
                                 <label>Data de Check-out</label>
-                                <input type="date" value="2025-04-19" />
+                                <input type="date" id="data-checkout" />
                             </div>
                         </div>
-
                         <div class="form-row">
                             <div>
-                                <label>Adultos</label>
-                                <select>
-                                    <option>1</option>
-                                    <option selected>2</option>
-                                    <option>3</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label>Crianças</label>
-                                <select>
-                                    <option>0</option>
-                                    <option>1</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label>Tipo de Quarto</label>
-                                <select>
-                                    <option selected>Selecione um quarto</option>
-                                    <option value="Suíte Luxo com Vista para o Mar">Suíte Luxo com Vista para o Mar
+                                <label>Tipo de Quiosque ou Churrasqueira</label>
+                                <select id="tipo-quiosque">
+                                    <option selected>Selecione um</option>
+                                    <option value="Quiosque Beira-Rio">Quiosque Beira-Rio</option>
+                                    <option value="Quiosque Sombra Natural">Quiosque Sombra Natural</option>
+                                    <option value="Quiosque Central">Quiosque Central</option>
+                                    <option value="Quiosque Infantil">Quiosque Infantil</option>
+                                    <option value="Quiosque Panorâmico">Quiosque Panorâmico</option>
+                                    <option value="Churrasqueira Coberta - Pedra">Churrasqueira Coberta - Pedra</option>
+                                    <option value="Churrasqueira Coberta - Madeira">Churrasqueira Coberta - Madeira
                                     </option>
-                                    <option value="Bangalô Familiar">Bangalô Familiar</option>
-                                    <option value="Chalé Romântico">Chalé Romântico</option>
                                 </select>
                             </div>
                         </div>
                     </section>
 
-                    <!-- RESUMO DA RESERVA -->
                     <aside class="reservation-summary">
                         <h2 class="font-1-l color-1">Resumo da Reserva</h2>
-                        <p class="color-5 font-2-s"><i>Nenhum quarto selecionado</i></p>
-                        <ul class="summary-list">
-                            <li><strong>Check-in:</strong> 17/04/2025</li>
-                            <li><strong>Check-out:</strong> 19/04/2025</li>
-                            <li><strong>Noites:</strong> 2</li>
-                            <li><strong>Hóspedes:</strong> 2 adultos</li>
-                        </ul>
+                        <p class="color-5 font-2-s" id="resumo-placeholder"><i>Nenhum espaço selecionado</i></p>
+                        <ul class="summary-list" id="resumo-atual"></ul>
                         <div class="summary-total">
-                            <strong>Total:</strong> <span>R$ 0</span>
+                            <strong>Total:</strong> <span id="resumo-total">R$ 0</span>
                         </div>
                         <button class="btn btn-green">Confirmar Reserva</button>
                     </aside>
                 </div>
 
-                <!-- SERVIÇOS ADICIONAIS -->
-                <section class="additional-services">
-                    <h2 class="font-1-l color-1">Serviços Adicionais</h2>
-                    <p class="font-2-s color-5">Escolha os serviços para complementar sua estadia</p>
-
-                    <ul class="services-list">
-                        <li><i class="fa-solid fa-mug-hot"></i>
-                            <div><strong>Café da Manhã Especial</strong>
-                                <p>Um café da manhã gourmet servido no quarto com produtos frescos.</p>
-                            </div><span>R$ 120</span>
-                        </li>
-                        <li><i class="fa-solid fa-utensils"></i>
-                            <div><strong>Jantar Romântico</strong>
-                                <p>Jantar especial para duas pessoas com vista para o mar.</p>
-                            </div><span>R$ 350</span>
-                        </li>
-                        <li><i class="fa-solid fa-heart"></i>
-                            <div><strong>Pacote de Spa</strong>
-                                <p>Tratamentos relaxantes como massagem e aromaterapia.</p>
-                            </div><span>R$ 450</span>
-                        </li>
-                        <li><i class="fa-solid fa-map-location-dot"></i>
-                            <div><strong>Tour Guiado</strong>
-                                <p>Tour pelos principais pontos turísticos com guia especializado.</p>
-                            </div><span>R$ 320</span>
-                        </li>
-                    </ul>
+                <section id="reserva-confirmada" class="reserva-confirmada">
+                    <h2 class="font-1-l color-1">Reservas Realizadas</h2>
+                    <div id="lista-reservas"></div>
                 </section>
             </section>
         </main>
     </div>
-
-    <script src="./js/modal&switch.js"></script>
-    <script src="./js/reservation.js"></script>
+    <script src="./js/reservationTemp.js"></script>
 </body>
 
 </html>

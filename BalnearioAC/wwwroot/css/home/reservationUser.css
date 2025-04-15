@@ -1,3 +1,4 @@
+/* reservationUser.css ajustado */
 .tab {
     flex: 1;
     text-align: center;
@@ -83,54 +84,6 @@ select:focus {
     color: var(--color-1);
 }
 
-.additional-services {
-    background-color: var(--color-0);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-}
-
-.services-list {
-    list-style: none;
-    padding: 0;
-    margin-top: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.services-list li {
-    display: flex;
-    align-items: center;
-    background-color: var(--color-4);
-    padding: 1rem;
-    border-radius: 8px;
-    justify-content: space-between;
-    transition: border 0.3s ease, background 0.3s ease;
-    cursor: pointer;
-}
-
-.services-list i {
-    font-size: 1.5rem;
-    color: var(--color-3);
-    margin-right: 1rem;
-}
-
-.services-list div {
-    flex: 1;
-    margin-left: 1rem;
-}
-
-.services-list span {
-    font-weight: bold;
-    color: var(--color-1);
-}
-
-.services-list li.selected {
-    border: 2px solid var(--color-2);
-    background-color: var(--color-2-transparent);
-}
-
 .btn {
     padding: 0.75rem 1.5rem;
     font-weight: bold;
@@ -152,4 +105,21 @@ select:focus {
 
 .user-welcome {
     margin-bottom: 2rem;
+}
+
+.reservation-container {
+    background-color: var(--color-0);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.reserva-confirmada {
+    background-color: var(--color-0);
+    padding: 2rem;
+    border-radius: 14px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid #707070;
+    height: 50vh;
+    overflow-y: scroll;
 }

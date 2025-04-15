@@ -1,72 +1,78 @@
-// Preços dos quartos (você pode substituir isso com dados vindos da API depois)
-const roomPrices = {
-    "Suíte Luxo com Vista para o Mar": 750,
-    "Bangalô Familiar": 950,
-    "Chalé Romântico": 680
+const checkinInput = document.getElementById("data-checkin");
+const checkoutInput = document.getElementById("data-checkout");
+const tipoSelect = document.getElementById("tipo-quiosque");
+const resumoAtual = document.getElementById("resumo-atual");
+const totalSpan = document.getElementById("resumo-total");
+const placeholder = document.getElementById("resumo-placeholder");
+const listaReservas = document.getElementById("lista-reservas");
+
+const valores = {
+    "Quiosque Beira-Rio": 180,
+    "Quiosque Sombra Natural": 160,
+    "Quiosque Central": 150,
+    "Quiosque Infantil": 140,
+    "Quiosque Panorâmico": 190,
+    "Churrasqueira Coberta - Pedra": 250,
+    "Churrasqueira Coberta - Madeira": 270,
 };
 
-// Preços dos serviços adicionais
-const servicePrices = {
-    "Café da Manhã Especial": 120,
-    "Jantar Romântico": 350,
-    "Pacote de Spa": 450,
-    "Serviço de Transfer": 280,
-    "Tour Guiado": 320
-};
+function calcularResumo() {
+    const checkin = checkinInput.value;
+    const checkout = checkoutInput.value;
+    const tipo = tipoSelect.value;
 
-// Elementos
-const checkinInput = document.querySelector('input[type="date"]:nth-of-type(1)');
-const checkoutInput = document.querySelector('input[type="date"]:nth-of-type(2)');
-const selectRoom = document.querySelector('select:nth-of-type(3)');
-const totalSpan = document.querySelector(".summary-total span");
-const summaryList = document.querySelector(".summary-list");
-const serviceListItems = document.querySelectorAll(".services-list li");
+    if (!(checkin && checkout && valores[tipo])) return;
 
-// Atualiza total sempre que algo mudar
-[checkinInput, checkoutInput, selectRoom].forEach(el => {
-    el.addEventListener("change", updateTotal);
-});
+    const dataInicio = new Date(checkin);
+    const dataFim = new Date(checkout);
+    const dias = (dataFim - dataInicio) / (1000 * 60 * 60 * 24);
+    if (dias <= 0 || isNaN(dias)) return;
 
-// Serviços adicionais
-serviceListItems.forEach(item => {
-    item.addEventListener("click", () => {
-        item.classList.toggle("selected");
-        updateTotal();
-    });
-});
-
-// Função para calcular diferença de dias
-function getNumberOfNights() {
-    const checkinDate = new Date(checkinInput.value);
-    const checkoutDate = new Date(checkoutInput.value);
-    const diff = checkoutDate - checkinDate;
-    return Math.max(Math.round(diff / (1000 * 60 * 60 * 24)), 0);
+    const total = valores[tipo] * dias;
+    resumoAtual.innerHTML = `
+    <li><strong>Check-in:</strong> ${checkin}</li>
+    <li><strong>Check-out:</strong> ${checkout}</li>
+    <li><strong>Noites:</strong> ${dias}</li>
+    <li><strong>Espaço Selecionado:</strong> ${tipo}</li>
+  `;
+    totalSpan.innerText = `R$ ${total.toFixed(2)}`;
+    placeholder.style.display = "none";
 }
 
-// Atualiza total da reserva
-function updateTotal() {
-    const nights = getNumberOfNights();
-    const room = selectRoom.value;
-    let total = 0;
+// Atualiza resumo em tempo real
+[checkinInput, checkoutInput, tipoSelect].forEach((el) =>
+    el.addEventListener("change", calcularResumo)
+);
 
-    if (room && roomPrices[room]) {
-        total += roomPrices[room] * nights;
+// Confirma reserva e adiciona à lista
+document.querySelector(".btn-green").addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const checkin = checkinInput.value;
+    const checkout = checkoutInput.value;
+    const tipo = tipoSelect.value;
+
+    const dataInicio = new Date(checkin);
+    const dataFim = new Date(checkout);
+    const dias = (dataFim - dataInicio) / (1000 * 60 * 60 * 24);
+
+    if (!checkin || !checkout || !valores[tipo] || dias <= 0) {
+        alert("Preencha corretamente todos os campos.");
+        return;
     }
 
-    serviceListItems.forEach(item => {
-        if (item.classList.contains("selected")) {
-            const serviceName = item.querySelector("strong").innerText;
-            total += servicePrices[serviceName] || 0;
-        }
-    });
+    const total = valores[tipo] * dias;
 
-    totalSpan.textContent = `R$ ${total.toFixed(2)}`;
+    const reserva = document.createElement("ul");
+    reserva.classList.add("summary-list");
+    reserva.style.marginBottom = "2rem";
+    reserva.innerHTML = `
+    <li><strong>Check-in:</strong> ${checkin}</li>
+    <li><strong>Check-out:</strong> ${checkout}</li>
+    <li><strong>Noites:</strong> ${dias}</li>
+    <li><strong>Espaço:</strong> ${tipo}</li>
+    <li><strong>Total:</strong> R$ ${total.toFixed(2)}</li>
+  `;
 
-    // Atualiza resumo de noites
-    summaryList.innerHTML = `
-      <li><strong>Check-in:</strong> ${checkinInput.value.split("-").reverse().join("/")}</li>
-      <li><strong>Check-out:</strong> ${checkoutInput.value.split("-").reverse().join("/")}</li>
-      <li><strong>Noites:</strong> ${nights}</li>
-      <li><strong>Hóspedes:</strong> 2 adultos</li>
-    `;
-}
+    listaReservas.appendChild(reserva);
+});
