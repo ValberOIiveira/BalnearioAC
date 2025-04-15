@@ -1,0 +1,23 @@
+/* === GLOBAL === */
+@import url("./global/global.css");
+@import url("./global/header.css");
+@import url("./global/navbar.css");
+@import url("./global/modal.css");
+
+
+/* === UTILITÁRIOS === */
+@import url("./utilidades/cores.css");
+@import url("./utilidades/tipografia.css");
+@import url("./utilidades/componentes.css");
+
+/* === PÁGINAS === */
+
+@import url("./login/loginUser.css");
+@import url("./login/loginEmployee.css");
+@import url("./home/home.css");
+@import url("./login/login.css");
+@import url("./register/register.css");
+@import url("./home/salesManager.css");
+@import url("./home/reservationUser.css");
+@import url("./home/homeUser.css");
+

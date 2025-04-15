@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -20,7 +21,11 @@ namespace BalnearioAC.Models
         [Column("total_value")]
         public decimal? TotalValue { get; set; }
 
+        // Relacionamento com a tabela Employee (um funcionário pode fazer várias vendas)
         [ForeignKey("EmployeeId")]
         public Employee? Employee { get; set; }
+
+        // Relacionamento com a tabela ItemSales (uma venda pode ter vários itens)
+        public ICollection<ItemSale> ItemSales { get; set; } // Adicionando a coleção de itens de venda
     }
 }

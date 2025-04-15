@@ -1,0 +1,155 @@
+.tab {
+    flex: 1;
+    text-align: center;
+    background-color: var(--color-4);
+    padding: 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-1);
+    transition: all 0.3s ease;
+}
+
+.tab.active {
+    background-color: var(--color-0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.reservation-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.reservation-form,
+.reservation-summary {
+    background-color: var(--color-0);
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+.form-row>div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+    color: var(--color-1);
+}
+
+input[type="date"],
+select {
+    padding: 0.6rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: var(--color-0);
+    color: var(--color-5);
+    font-family: "Quicksand", sans-serif;
+    font-size: 1rem;
+}
+
+input[type="date"]:focus,
+select:focus {
+    outline: none;
+    border-color: var(--color-2);
+    box-shadow: 0 0 0 2px var(--color-2-transparent);
+}
+
+.summary-list {
+    margin: 1rem 0;
+    padding-left: 0;
+    list-style: none;
+    color: var(--color-5);
+    font-size: 0.9rem;
+}
+
+.summary-total {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    color: var(--color-1);
+}
+
+.additional-services {
+    background-color: var(--color-0);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.services-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.services-list li {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-4);
+    padding: 1rem;
+    border-radius: 8px;
+    justify-content: space-between;
+    transition: border 0.3s ease, background 0.3s ease;
+    cursor: pointer;
+}
+
+.services-list i {
+    font-size: 1.5rem;
+    color: var(--color-3);
+    margin-right: 1rem;
+}
+
+.services-list div {
+    flex: 1;
+    margin-left: 1rem;
+}
+
+.services-list span {
+    font-weight: bold;
+    color: var(--color-1);
+}
+
+.services-list li.selected {
+    border: 2px solid var(--color-2);
+    background-color: var(--color-2-transparent);
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-family: "Quicksand", sans-serif;
+}
+
+.btn-green {
+    background-color: var(--color-2);
+    color: var(--color-0);
+}
+
+.btn-green:hover {
+    background-color: #5a8f34;
+}
+
+.user-welcome {
+    margin-bottom: 2rem;
+}

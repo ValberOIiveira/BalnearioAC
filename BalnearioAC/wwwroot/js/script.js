@@ -1,4 +1,4 @@
-﻿// Exporta a função para poder ser usada em outros arquivos
+// Exporta a função para poder ser usada em outros arquivos
 export async function apiRequest(url, method = 'GET', body = null, headers = {}) {
     try {
         // Cria um objeto de configuração para a requisição

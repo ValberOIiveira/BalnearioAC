@@ -1,0 +1,143 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 9999;
+}
+
+.modal.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-content {
+    background: var(--color-0);
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    color: var(--color-3);
+    cursor: pointer;
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-height: 500px;
+    overflow: hidden;
+}
+
+.modal-lista-produtos {
+    overflow-y: auto;
+    border-right: 1px solid #eee;
+    padding-right: 10px;
+}
+
+.modal-lista-produtos input {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.produto-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-carrinho {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+#carrinho-produtos {
+    overflow-y: auto;
+    flex: 1;
+}
+
+.carrinho-item {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.item-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.item-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.item-controls a {
+    color: red;
+    cursor: pointer;
+}
+
+.modal-total {
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+.modal-acoes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+/* NOVO PRODUTO FORM */
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.modal-content form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+.modal-content form button {
+    padding: 10px;
+    background-color: var(--color-2);
+    color: var(--color-0);
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.modal-content form button:hover {
+    background-color: #5a8b32;
+    /* leve escurecida */
+}

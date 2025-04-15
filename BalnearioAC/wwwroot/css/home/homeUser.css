@@ -1,0 +1,82 @@
+/* homeUser.css */
+
+.room-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.room-card {
+    background-color: var(--color-0);
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+}
+
+.room-card:hover {
+    transform: translateY(-5px);
+}
+
+.room-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.room-info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.price-tag {
+    background-color: var(--color-3);
+    color: var(--color-5);
+    padding: 4px 10px;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 0.875rem;
+    align-self: flex-end;
+    width: fit-content;
+}
+
+.room-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.room-tags li {
+    background-color: var(--color-2-transparent);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: var(--color-1);
+}
+
+.btn {
+    padding: 0.5rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--color-2);
+    color: var(--color-0);
+    font-weight: bold;
+    font-size: 0.875rem;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #5a8f34;
+}
+
+.user-welcome {
+    margin-bottom: 2rem;
+}
