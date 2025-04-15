@@ -5,21 +5,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rancho da Capivara - Vendas</title>
-    <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/modal.css" />
     <link rel="shortcut icon" href="./assets/img/logo.png" type="image/x-icon" />
     <script src="https://kit.fontawesome.com/a2e00f7c45.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/global/modal.css">
+    <link rel="stylesheet" href="./css/global/navbar.css" />
+    <link rel="stylesheet" href="./css/home/salesManager.css">
+    <link rel="stylesheet" href="./css/utilidades/componentes.css">
+    <link rel="stylesheet" href="./css/utilidades/cores.css">
+    <link rel="stylesheet" href="./css/utilidades/tipografia.css">
+    <link rel="stylesheet" href="./css/global/global.css">
 </head>
 
 <body>
     <div class="layout">
         <!-- NAVBAR PRINCIPAL -->
         <aside class="sidebar" role="complementary">
-            <header>
+            <header class="sidebar-header">
                 <img src="./assets/img/logo-vertical.png" alt="Logo Rancho da Capivara" />
             </header>
 
-            <nav aria-label="Menu principal">
+            <nav class="sidebar-nav" aria-label="Menu lateral">
                 <ul>
                     <li><a href="#"><i class="fa-solid fa-table-columns"></i> Dashboard</a></li>
                     <li><a href="#"><i class="fa-solid fa-calendar-days"></i> Reservas</a></li>
@@ -29,10 +34,11 @@
                 </ul>
             </nav>
 
-            <footer>
-                <p>Rancho da Capivara © 2025</p>
+            <footer class="sidebar-footer">
+                <p class="font-2-xs color-5">Rancho da Capivara © 2025</p>
             </footer>
         </aside>
+
 
         <!-- CONTEUDO PRINCIPAL -->
         <main class="dashboard">

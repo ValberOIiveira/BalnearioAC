@@ -5,9 +5,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rancho da Capivara - Bem-vindo</title>
-    <link rel="stylesheet" href="./css/style.css" />
     <link rel="shortcut icon" href="./assets/img/logo.png" type="image/x-icon" />
     <script src="https://kit.fontawesome.com/a2e00f7c45.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/home/homeUser.css" />
+    <link rel="stylesheet" href="./css/global/navbar.css"/>
+    <link rel="stylesheet" href="./css/utilidades/componentes.css">
+    <link rel="stylesheet" href="./css/utilidades/cores.css">
+    <link rel="stylesheet" href="./css/utilidades/tipografia.css">
+    <link rel="stylesheet" href="./css/global/global.css">
 </head>
 
 <body>
@@ -15,24 +20,24 @@
         <!-- SIDEBAR -->
         <aside class="sidebar" role="complementary">
             <header class="sidebar-header">
-                <img src="./assets/img/user-default.svg" alt="Foto de perfil" class="user-photo" />
-                <h3 class="font-2-m color-1">João Silva</h3>
+                <h3 class="font-2-s color-1">João Silva</h3>
                 <p class="font-2-xs color-5">joao.silva@email.com</p>
             </header>
 
-            <nav class="sidebar-nav">
+            <nav class="sidebar-nav" aria-label="Menu lateral">
                 <ul>
-                    <li class="active"><a href="#"><i class="fa-solid fa-house"></i> Início</a></li>
+                    <li class="active"><a href="./homeUser.html"><i class="fa-solid fa-house"></i> Início</a></li>
                     <li><a href="./reservationUser.html"><i class="fa-solid fa-calendar-check"></i> Minhas Reservas</a>
                     </li>
                     <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
                 </ul>
             </nav>
 
-            <footer>
-                <p>Rancho da Capivara © 2025</p>
+            <footer class="sidebar-footer">
+                <p class="font-2-xs color-5">Rancho da Capivara © 2025</p>
             </footer>
         </aside>
+
 
         <!-- CONTEÚDO PRINCIPAL -->
         <main class="dashboard">
