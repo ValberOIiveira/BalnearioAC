@@ -37,30 +37,35 @@ namespace BalnearioAC.Controllers
         [HttpPost]
         public async Task<ActionResult<Reservation>> Post([FromBody] Reservation reservation)
         {
-            // Verificar se o visitante existe
-            var visitor = await _context.Visitors.FindAsync(reservation.VisitorId);
-            if (visitor == null)
+            try
             {
-                return BadRequest("Visitor not found");
-            }
+                var visitor = await _context.Visitors.FindAsync(reservation.VisitorId);
+                if (visitor == null)
+                {
+                    return BadRequest("Visitor not found");
+                }
 
-            // Verificar se o quiosque existe
-            var kiosk = await _context.Kiosks.FindAsync(reservation.KioskId);
-            if (kiosk == null)
+                var kiosk = await _context.Kiosks.FindAsync(reservation.KioskId);
+                if (kiosk == null)
+                {
+                    return BadRequest("Kiosk not found");
+                }
+
+                reservation.StartDate = DateTime.SpecifyKind(reservation.StartDate, DateTimeKind.Utc);
+                reservation.EndDate = DateTime.SpecifyKind(reservation.EndDate, DateTimeKind.Utc);
+
+                _context.Reservations.Add(reservation);
+                await _context.SaveChangesAsync();
+
+                return CreatedAtAction(nameof(Get), new { id = reservation.Id }, reservation);
+            }
+            catch (Exception ex)
             {
-                return BadRequest("Kiosk not found");
+                Console.WriteLine($"Erro ao criar a reserva: {ex.Message}");
+                return StatusCode(500, "Erro interno no servidor.");
             }
-
-            // Se ambos o visitante e o quiosque forem encontrados, cria a reserva
-            reservation.StartDate = DateTime.SpecifyKind(reservation.StartDate, DateTimeKind.Utc);
-            reservation.EndDate = DateTime.SpecifyKind(reservation.EndDate, DateTimeKind.Utc);
-
-            _context.Reservations.Add(reservation);
-            await _context.SaveChangesAsync();
-
-            // Retorna a reserva criada
-            return CreatedAtAction(nameof(Get), new { id = reservation.Id }, reservation);
         }
+
 
 
 
@@ -68,7 +73,14 @@ namespace BalnearioAC.Controllers
         public async Task<ActionResult<Reservation>> Put(int id, [FromBody] Reservation reservation)
         {
             var existente = await _context.Reservations.FindAsync(id);
-            if (existente == null) return NotFound();
+            if (existente == null) 
+            {
+                Console.WriteLine($"Reserva com ID {id} não encontrada.");
+                return NotFound();
+            }
+
+            // Verifique o conteúdo da reserva recebida
+            Console.WriteLine($"Dados recebidos para atualização: StartDate: {reservation.StartDate}, EndDate: {reservation.EndDate}, VisitorId: {reservation.VisitorId}, KioskId: {reservation.KioskId}");
 
             existente.StartDate = reservation.StartDate;
             existente.EndDate = reservation.EndDate;
@@ -78,6 +90,7 @@ namespace BalnearioAC.Controllers
             await _context.SaveChangesAsync();
             return existente;
         }
+
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<Reservation>> Delete(int id)

@@ -1,25 +1,11 @@
-let idEmEdicao = null; // Quando estiver editando uma reserva
+import { apiRequest } from "./script.js";
 
+let idEmEdicao = null; // Quando estiver editando uma reserva
 const form = document.getElementById('create-form');
 const tabela = document.getElementById('reservation-table-body');
 
-// Função para fazer requisição genérica à API
-async function apiRequest(url, method, data = {}) {
-    const response = await fetch(url, {
-        method: method,
-        headers: { 'Content-Type': 'application/json' },
-        body: method !== 'GET' ? JSON.stringify(data) : null
-    });
-
-    if (!response.ok) {
-        throw new Error('Erro na requisição');
-    }
-
-    return await response.json();
-}
-
-// Listar todas as reservas
-async function getReservations() {
+// Função para listar as reservas
+async function listarReservas() {
     try {
         const reservas = await apiRequest('http://localhost:5237/reservation', 'GET');
         renderTable(reservas);
@@ -28,60 +14,82 @@ async function getReservations() {
     }
 }
 
-// Criar OU atualizar reserva
-form.addEventListener('submit', async (e) => {
-    e.preventDefault();
 
-    const reservation = {
-        startDate: document.getElementById('start_date_create').value,
-        endDate: document.getElementById('end_date_create').value,
-        visitorId: parseInt(document.getElementById('visitor_id_create').value),
-        kioskId: document.getElementById('kiosk_id_create').value || null
+async function criarReserva(reservation) {
+    const body = {
+        startDate: new Date(reservation.startDate).toISOString(),
+        endDate: new Date(reservation.endDate).toISOString(),
+        visitorId: parseInt(reservation.visitorId),
+        kioskId: reservation.kioskId ? parseInt(reservation.kioskId) : null
     };
 
+    console.log("Enviando dados:", body);  // Adicione esta linha para depurar
+
+    await apiRequest('http://localhost:5237/reservation', 'POST', body);
+}
+
+
+// Função para atualizar uma reserva existente
+async function atualizarReserva(id, reservation) {
+    // Garantir que as datas sejam no formato ISO
+    reservation.startDate = new Date(reservation.startDate).toISOString();
+    reservation.endDate = new Date(reservation.endDate).toISOString();
+
     try {
-        if (idEmEdicao) {
-            // Atualizar
-            await apiRequest(`http://localhost:5237/reservation/${idEmEdicao}`, 'PUT', reservation);
-            alert('Reserva atualizada com sucesso!');
-        } else {
-            // Criar
-            await apiRequest('http://localhost:5237/reservation', 'POST', reservation);
-            alert('Reserva criada com sucesso!');
-        }
-
-        idEmEdicao = null;
-        form.querySelector('button').textContent = "Criar Reserva";
-        form.reset();
-        await getReservations();
+        const response = await apiRequest(`http://localhost:5237/reservation/${id}`, 'PUT', reservation);
+        console.log('Resposta da API:', response);
+        alert('Reserva atualizada com sucesso!');
     } catch (error) {
-        console.error('Erro ao salvar reserva:', error);
+        console.error('Erro ao atualizar reserva:', error);
+        if (error.response) {
+            console.error('Detalhes do erro:', error.response.data);
+        }
     }
-});
+}
 
-// Deletar reserva
-async function deleteReservation(id) {
+
+// Função para criar ou atualizar a reserva (separando as operações de criação e atualização)
+async function criarOuAtualizarReserva(reservation) {
+    if (idEmEdicao) {
+        // Atualizar
+        await atualizarReserva(idEmEdicao, reservation);
+    } else {
+        // Criar
+        await criarReserva(reservation);
+    }
+
+    // Resetando a edição após criação ou atualização
+    idEmEdicao = null;
+    form.querySelector('button').textContent = "Criar Reserva";
+    form.reset();
+    await listarReservas();
+}
+
+// Função para deletar uma reserva
+async function deletarReserva(id) {
     if (confirm('Tem certeza que deseja excluir esta reserva?')) {
         try {
             await apiRequest(`http://localhost:5237/reservation/${id}`, 'DELETE');
             alert('Reserva excluída com sucesso!');
-            await getReservations();
+            await listarReservas();
         } catch (error) {
             console.error('Erro ao deletar reserva:', error);
         }
     }
 }
 
-// Preencher formulário para edição
-async function editReservation(id) {
+// Função para preencher o formulário de edição
+async function preencherFormularioParaEdicao(id) {
     try {
         const reserva = await apiRequest(`http://localhost:5237/reservation/${id}`, 'GET');
 
-        document.getElementById('start_date_create').value = reserva.startDate.slice(0, 16);
-        document.getElementById('end_date_create').value = reserva.endDate.slice(0, 16);
+        // Preenchendo o formulário com os dados da reserva
+        document.getElementById('start_date_create').value = reserva.startDate.slice(0, 16); // Formato correto para datetime-local
+        document.getElementById('end_date_create').value = reserva.endDate.slice(0, 16); // Formato correto para datetime-local
         document.getElementById('visitor_id_create').value = reserva.visitorId;
         document.getElementById('kiosk_id_create').value = reserva.kioskId ?? '';
 
+        // Configurando a edição
         idEmEdicao = id;
         form.querySelector('button').textContent = "Atualizar Reserva";
     } catch (error) {
@@ -89,7 +97,7 @@ async function editReservation(id) {
     }
 }
 
-// Renderizar tabela
+// Função para renderizar a tabela
 function renderTable(reservas) {
     tabela.innerHTML = '';
 
@@ -102,15 +110,15 @@ function renderTable(reservas) {
             <td>${reserva.visitorId}</td>
             <td>${reserva.kioskId ?? '-'}</td>
             <td>
-                <button onclick="editReservation(${reserva.id})">Editar</button>
-                <button onclick="deleteReservation(${reserva.id})">Excluir</button>
+                <button onclick="preencherFormularioParaEdicao(${reserva.id})">Editar</button>
+                <button onclick="deletarReserva(${reserva.id})">Excluir</button>
             </td>
         `;
         tabela.appendChild(tr);
     });
 }
 
-// Formatar data para exibição (ex: 2025-04-15 10:00)
+// Função para formatar a data
 function formatDate(dateStr) {
     return new Date(dateStr).toLocaleString('pt-BR', {
         dateStyle: 'short',
@@ -119,8 +127,23 @@ function formatDate(dateStr) {
 }
 
 // Carregar reservas ao iniciar
-getReservations();
+listarReservas();
 
 // Expor funções no escopo global (necessário para usar onclick no HTML)
-window.editReservation = editReservation;
-window.deleteReservation = deleteReservation;
+window.preencherFormularioParaEdicao = preencherFormularioParaEdicao;
+window.deletarReserva = deletarReserva;
+
+// Adicionar listener no formulário
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const reservation = {
+        startDate: document.getElementById('start_date_create').value,
+        endDate: document.getElementById('end_date_create').value,
+        visitorId: parseInt(document.getElementById('visitor_id_create').value),
+        kioskId: document.getElementById('kiosk_id_create').value || null
+    };
+
+    // Certificando-se de que as datas sejam enviadas no formato correto
+    criarOuAtualizarReserva(reservation);
+});
