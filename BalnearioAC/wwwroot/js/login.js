@@ -11,7 +11,12 @@ async function Login(event){
 
         if (response) {
             console.log( response );
-            window.location.href = './index.html';
+            if (response.id_user_type == 1 || response.id_user_type == 2){ 
+                window.location.href = './homeAdmin.html';
+            }
+            else{
+                window.location.href = './homeUser.html';
+            }
         }
         else{
             console.log('Erro ao fazer login');

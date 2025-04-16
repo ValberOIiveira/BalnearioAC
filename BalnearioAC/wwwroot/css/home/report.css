@@ -1,0 +1,114 @@
+body {
+    margin: 0;
+    font-family: "Quicksand", sans-serif;
+    background-color: #1e1e1e;
+}
+
+.layout {
+    display: flex;
+    height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+    background-color: var(--color-3);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-bar h1 {
+    color: #6a5300;
+    font-size: 1.5rem;
+}
+
+.exportar {
+    background-color: var(--color-2);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.op {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 200px;
+}
+
+.btnRelatorio {
+    padding: 10px;
+    border: 2px solid var(--color-2);
+    background-color: transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #333;
+}
+
+.tabela {
+    background-color: var(--color-4);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.tabela table {
+    width: 100%;
+    border-collapse: collapse; /* Evita bordas duplas */
+}
+
+.tabela th,
+.tabela td {
+    border: 1px solid #ddd; /* Adiciona bordas às células */
+    padding: 8px; /* Adiciona espaçamento interno */
+    text-align: left; /* Alinha o texto à esquerda */
+}
+
+.tabela th {
+    background-color: var(--color-2);
+    color: white;
+    text-align: left;
+}
+
+.tabela tr:nth-child(even) {
+    background-color: #f2f2f2; /* Adiciona fundo cinza alternado às linhas */
+}
+
+.tabela tr:hover {
+    background-color: #ddd; /* Adiciona efeito de hover às linhas */
+}
+
+/* Esconde as tabelas por padrão */
+.tab-content {
+    display: none;
+}
+
+/* Mostra a tabela ativa */
+.tab-content.active {
+    display: block;
+}
+.textinho h1 {
+    background: linear-gradient(to top, #ECAE2D 50%, transparent 50%);
+    background-size: 100% 200%;
+    background-position: 0 100%;
+    transition: background-position 0.3s ease;
+    color: #482A13;
+    font-style: italic;
+    font-weight: bold;
+  }
+  
+  .textinho h1:hover {
+    background-position: 0 0;
+  }

@@ -26,11 +26,7 @@
 
             <nav class="sidebar-nav" aria-label="Menu lateral">
                 <ul>
-                    <li><a href="#"><i class="fa-solid fa-table-columns"></i> Dashboard</a></li>
-                    <li><a href="#"><i class="fa-solid fa-calendar-days"></i> Reservas</a></li>
-                    <li><a href="#"><i class="fa-solid fa-user-group"></i> Visitantes</a></li>
-                    <li class="active"><a href="#"><i class="fa-solid fa-cart-shopping"></i> Vendas</a></li>
-                    <li><a href="#"><i class="fa-solid fa-chart-column"></i> Relatórios</a></li>
+                    <li class="active"><a href="#"><i class="fa-solid fa-cart-shopping"></i> Dashboard</a></li>
                     <li><a href="./home.html"><i class="fa-solid fa-chart-column"></i> Sair</a></li>
                 </ul>
             </nav>
@@ -100,7 +96,7 @@
                         <div>Vendidos</div>
                         <div>Ações</div>
                     </div>
-                    <div class="table-row">
+                    <div id="produtos" class="table-row">
                         <div>Água Mineral</div>
                         <div>Bebidas</div>
                         <div>R$ 5.00</div>
@@ -120,14 +116,14 @@
                         <div>Pagamento</div>
                         <div>Ações</div>
                     </div>
-                    <div class="table-row">
-                        <div>12/04/2025</div>
+                    <div  id="vendas" class="table-row">
+                        <!-- <div>12/04/2025</div>
                         <div>3</div>
                         <div>R$ 38,00</div>
                         <div>PIX</div>
                         <div class="table-actions">
                             <button class="btn btn-outline">Editar</button>
-                        </div>
+                        </div> -->
                     </div>
                 </section>
 
@@ -140,11 +136,12 @@
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal('modalProduto')">&times;</span>
             <h2>Novo Produto</h2>
-            <form>
-                <input type="text" placeholder="Nome do Produto" required />
-                <input type="text" placeholder="Categoria" required />
-                <input type="number" placeholder="Preço" required />
-                <input type="number" placeholder="Estoque Inicial" required />
+            <form id="produtoForm">
+                <input type="hidden" id="id">
+                <input id="name" type="text" placeholder="Nome do Produto" required />
+                <input id="category" type="text" placeholder="Categoria" required />
+                <input id="price" type="number" placeholder="Preço" required />
+                <input id="qtd" type="number" placeholder="Estoque Inicial" required />
                 <button type="submit">Adicionar Produto</button>
             </form>
         </div>
@@ -176,7 +173,7 @@
                     </div>
                     <div class="modal-acoes">
                         <button class="btn btn-outline" onclick="limparCarrinho()">Limpar</button>
-                        <button class="btn btn-green" onclick="finalizarVenda()">Finalizar</button>
+                        <button class="btn btn-green" onclick="finalizarVenda( event )" >Finalizar</button>
                     </div>
                 </div>
             </div>
@@ -185,6 +182,6 @@
 </body>
 
 <script src="./js/modal&switch.js"></script>
-<script src="./js/sales.js"></script>
-
+<script src="./js/sales.js" type="module" ></script>
+<script src="./js/ProdutoCRUD.js" type="module"></script>
 </html>

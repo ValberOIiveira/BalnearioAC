@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios</title>
+    <link rel="shortcut icon" href="./assets/img/logo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/global/modal.css">
+    <link rel="stylesheet" href="./css/global/navbar.css" />
+    <link rel="stylesheet" href="./css/home/salesManager.css">
+    <link rel="stylesheet" href="./css/utilidades/componentes.css">
+    <link rel="stylesheet" href="./css/utilidades/cores.css">
+    <link rel="stylesheet" href="./css/utilidades/tipografia.css">
+    <link rel="stylesheet" href="./css/global/global.css">
+</head>
+
+<body>
+    <div class="layout">
+
+        <!-- NAVBAR PRINCIPAL -->
+        <aside class="sidebar" role="complementary">
+            <header class="sidebar-header">
+                <img src="./assets/img/logo-vertical.png" alt="Logo Rancho da Capivara" />
+            </header>
+
+            <nav class="sidebar-nav" aria-label="Menu lateral">
+                <ul>
+                    <li class="active"><a href="#"><i class="fa-solid fa-chart-column"></i> Relatórios</a></li>
+                    <li><a href="./home.html"><i class="fa-solid fa-chart-column"></i> Sair</a></li>
+                </ul>
+            </nav>
+
+            <footer class="sidebar-footer">
+                <p class="font-2-xs color-5">Rancho da Capivara © 2025</p>
+            </footer>
+        </aside>
+
+
+        <!-- CONTEUDO PRINCIPAL -->
+        <main class="dashboard">
+            <section class="container" aria-labelledby="titulo-vendas">
+                <header class="sales-header">
+                    <div>
+                        <h1 id="titulo-vendas" class="font-1-xl color-1">Relatórios</h1>
+                    </div>
+                </header>
+
+                <!--RELATORIOS-->
+                <!-- ABAS -->
+                <div class="sales-tabs">
+                    <h1 class="txt">Relatórios de Reservas</h1>
+                </div>
+
+                <!-- TABELA DE PRODUTOS -->
+                <section class="sales-table tab-content active" id="tab-produtos" aria-label="Tabela de produtos">
+                    <table id="tabelaReporteReservas">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Data emissão</th>
+                                <th>ID Quiosque</th>
+                                <th>Nome do usuário</th>
+                                <th>Data início</th>
+                                <th>Data fim</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaReporteReservas tbody">
+                            <!-- Os dados da tabela serão preenchidos aqui pelo JavaScript -->
+                        </tbody>
+                    </table>
+                </section>
+                <!--TABELA VENDAS POR FUNCIONÁRIOS-->
+                <section class="sales-table tab-content" id="tab-vendas" aria-label="Tabela de vendas por funcionários">
+                    <table id="tabelaSalesByEmployee">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Data emissão</th>
+                                <th>Funcionário responsável</th>
+                                <th>Total de Vendas</th>
+                                <th>Valor Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Os dados da tabela serão preenchidos aqui pelo JavaScript -->
+                        </tbody>
+                    </table>
+
+                </section>
+        </main>
+    </div>
+</body>
+<script src="./js/reportReservation.js" type="module"></script>
+<script src="./js/reportSalesByEmployee.js" type="module"></script>
+
+</html>
