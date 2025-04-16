@@ -100,18 +100,20 @@ async function GetSales(){
     try {
 
         const response = await apiRequest('http://localhost:5237/sales/completo', 'GET');
+
         const table = document.getElementById('vendas');
         table.innerHTML = '';
         response.forEach((sale) => {
+            const quantidadeTotal = sale.itens.reduce((total, item) => total + item.quantidade, 0);
             const row = `
-                <div>${sale.date}</div>
-                <div>3</div>
-                <div>R$ 38,00</div>
-                <div>PIX</div>
-                <div class="table-actions">
-                    <button class="btn btn-outline">Editar</button>
-                </div>
-            `
+            <div>${sale.dataVenda}</div>
+            <div>${quantidadeTotal}</div>
+            <div>R$ ${sale.total}</div>
+            <div>PIX</div>
+            <div class="table-actions">
+                <button class="btn btn-outline">Editar</button>
+            </div>
+        `;
             table.innerHTML += row
         })
 
