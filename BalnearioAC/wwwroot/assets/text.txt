@@ -23,12 +23,11 @@ wwwroot
 │   │   ├── register/
 │   │   |   └── register.css
 │   │   |
-│   │   ├── utilidades/
-│   │   |   ├── componentes.css
-│   │   |   ├── cores.css
-│   │   |   └── tipografia.css
-│   │   │
-│   │   └── style.css
+│   │   └── utilidades/
+│   │       ├── componentes.css
+│   │       ├── cores.css
+│   │       └── tipografia.css
+│   │   
 │   │
 │   ├── js/
 │   │

@@ -27,6 +27,29 @@ header nav {
 
 }
 
+#paginaVideo {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  margin-bottom: 10rem;
+}
+
+.video-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  opacity: 1;
+}
+
+
 .logo img {
   width: 100px;
   height: 100px;
@@ -54,7 +77,6 @@ header nav {
 }
 
 #paginaVideo {
-  background-image: url("../../assets/img/landingPage/substitutoVideo.png");
   background-size: cover;
   background-position: center;
   position: relative;
@@ -238,6 +260,7 @@ header nav {
 .imgCafeManha img {
   border-radius: 40px;
 }
+
 .imgBalneario img {
   border-radius: 40px;
   height: 300px;
