@@ -21,6 +21,7 @@ async function listarProdutos() {
                 <td>${produto.name}</td>
                 <td>${produto.price}</td>
                 <td>${produto.quantity}</td>
+                <td>${produto.category}</td>
                 <td><button class="editBtn">Editar</button></td>
             `;
 
@@ -43,8 +44,9 @@ async function salvarProduto(event) {
         const name = document.getElementById('name').value;
         const price = document.getElementById('price').value;
         const quantity = document.getElementById('qtd').value; // Aqui usamos o id "qtd"
+        const category = document.getElementById('category').value; // Aqui usamos o id "qtd"
 
-        if (!name || !price || !quantity) {
+        if (!name || !price || !quantity || !category) {
             alert('Preencha todos os campos');
             return;
         }
@@ -55,10 +57,10 @@ async function salvarProduto(event) {
         let response;
         if (id) {
             // Atualiza o produto (PUT)
-            response = await apiRequest(`http://localhost:5237/Product/${id}`, 'PUT', { id, name, price, quantity });
+            response = await apiRequest(`http://localhost:5237/Product/${id}`, 'PUT', { id, name, price, quantity, category });
         } else {
             // Cria um novo produto (POST)
-            response = await apiRequest('http://localhost:5237/Product', 'POST', { name, price, quantity });
+            response = await apiRequest('http://localhost:5237/Product', 'POST', { name, price, quantity, category });
         }
 
         console.log(response);
@@ -80,6 +82,7 @@ async function editarProduto(id) {
         document.getElementById('name').value = produto.name;
         document.getElementById('price').value = produto.price;
         document.getElementById('qtd').value = produto.quantity; // Garantimos que estamos usando "quantity"
+        document.getElementById('category').value = produto.category; // Garantimos que estamos usando "quantity"
     } catch (error) {
         console.error("Erro ao carregar produto para edição:", error);
     }
