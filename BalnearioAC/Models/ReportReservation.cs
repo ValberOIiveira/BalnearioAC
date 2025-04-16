@@ -14,12 +14,11 @@ namespace BalnearioAC.Models
         [Column("report_date")]
         public DateTime ReportDate { get; set; } = DateTime.Now;
 
-        [Column("visitor_name")]
-        [StringLength(255)]
-        public string? VisitorName { get; set; }
-
         [Column("kiosk_id")]
         public int? KioskId { get; set; }
+
+        [Column("user_id")]
+        public int? UserId { get; set; }
 
         [Column("start_date")]
         public DateTime? StartDate { get; set; }
@@ -29,5 +28,8 @@ namespace BalnearioAC.Models
 
         [ForeignKey("KioskId")]
         public Kiosk? Kiosk { get; set; }
+
+        [ForeignKey("UserId")]
+        public User? User { get; set; }
     }
 }
