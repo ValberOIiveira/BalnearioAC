@@ -99,7 +99,7 @@ body {
 .tab-content.active {
     display: block;
 }
-.textinho h1 {
+.txt h1{
     background: linear-gradient(to top, #ECAE2D 50%, transparent 50%);
     background-size: 100% 200%;
     background-position: 0 100%;
@@ -109,6 +109,6 @@ body {
     font-weight: bold;
   }
   
-  .textinho h1:hover {
+  .txt h1:hover {
     background-position: 0 0;
   }
