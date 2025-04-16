@@ -1,3 +1,5 @@
+import { apiRequest } from "./script.js";
+
 async function listarReportSalesByEmployee() {
     try {
         const data = await apiRequest('http://localhost:5237/relatorios/salesbyemployee');
@@ -13,18 +15,19 @@ async function listarReportSalesByEmployee() {
         // Ordena os dados, se existirem
         data.sort((a, b) => a.id - b.id);
 
-        const tbody = document.querySelector("#tabelaSalesByEmployee tbody");
+        const tbody = document.querySelector("#tabelaSalesByEmployee");
         tbody.innerHTML = "";
 
         data.forEach(report => {
             const tr = document.createElement("tr");
             tr.innerHTML = `
                 <td>${report.id}</td>
-                <td>${report.report_date}</td>
-                <td>${report.employee_name}</td>
-                <td>${report.total_sales}</td>
-                <td>${report.total_value}</td>
+                <td>${report.reportDate}</td>
+                <td>${report.employeeName}</td>
+                <td>${report.totalSales}</td>
+                <td>${report.totalValue}</td>
             `;
+
             tbody.appendChild(tr);
         });
 
@@ -32,3 +35,4 @@ async function listarReportSalesByEmployee() {
         console.error("Erro ao listar vendas por funcionário:", error);
     }
 }
+listarReportSalesByEmployee();
