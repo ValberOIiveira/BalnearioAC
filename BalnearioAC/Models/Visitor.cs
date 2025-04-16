@@ -20,11 +20,12 @@ namespace BalnearioAC.Models
         [Column("cpf")]
         public string Cpf { get; set; }
 
-        [Column("age")]
-        public DateTime Age { get; set; }
+        [Column("birth_date")]
+        public DateTime BirthDate { get; set; }
 
         [Column("id_user")]
+        [ForeignKey("User")]
         public int IdUser { get; set; }
-
+        public virtual User User { get; set; }
     }
 }

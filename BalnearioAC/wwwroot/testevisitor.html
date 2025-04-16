@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>CRUD Visitantes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #eee;
+    }
+    form {
+      margin-bottom: 20px;
+    }
+    input {
+      padding: 5px;
+      margin-right: 10px;
+    }
+    button {
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Gerenciamento de Visitantes</h1>
+
+  <form id="visitorForm">
+    <input type="hidden" id="id">
+    <label>Nome:
+      <input type="text" id="name" required>
+    </label>
+    <label>CPF:
+      <input type="text" id="cpf" required>
+    </label>
+    <label>Data de Nascimento:
+      <input type="date" id="birthDate" required>
+    </label>
+    <label>Id_Usuario:
+      <input type="number" id="idUser" required>
+    </label>
+    <button type="submit">Salvar Visitante</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>Data de Nascimento</th>
+        <th>Nome do Usuario</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody id="visitorTableBody">
+      <!-- Visitantes serão listados aqui -->
+    </tbody>
+  </table>
+
+  <script type="module" src="js/visitors.js"></script>
+</body>
+</html>
