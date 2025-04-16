@@ -77,30 +77,52 @@ namespace BalnearioAC.Controllers
 
             return Ok("Venda excluída com sucesso");
         }
-        [HttpGet]
+        // Define a rota: GET /sales/completo
+        [HttpGet("completo")]
         public async Task<ActionResult<IEnumerable<object>>> GetSalesWithItems()
         {
+            // Consulta a tabela de vendas (Sales) no banco
             var salesWithItems = await _context.Sales
-                .Include(s => s.Employee)
-                .Include(s => s.ItemsSale)
-                    .ThenInclude(i => i.Product)
+
+                // Inclui os itens de cada venda (ItemSales)
+                .Include(s => s.ItemSales)
+
+                // Para cada ItemSale, inclui também os dados do produto relacionado (Product)
+                .ThenInclude(i => i.Product)
+
+                // Projeta os dados em um novo objeto anônimo (como um DTO)
                 .Select(s => new
                 {
-                    s.Id,
-                    s.SaleDate,
-                    s.TotalValue,
-                    EmployeeName = s.Employee.Name,
-                    PaymentMethod = "PIX", // Estático como solicitado
-                    Items = s.ItemsSale.Select(i => new
-                    {
-                        i.Product.Name,
-                        i.Qtd,
-                        i.Product.Price
-                    })
-                })
-                .ToListAsync();
+                    // Pega a data da venda
+                    DataVenda = s.SaleDate,
 
+                    // Pega o valor total da venda
+                    Total = s.TotalValue,
+
+                    // Define a forma de pagamento fixa como "Pix"
+                    FormaPagamento = "Pix",
+
+                    // Monta a lista de itens dessa venda
+                    Itens = s.ItemSales.Select(i => new
+                    {
+                        // Se o produto ainda existir, pega o nome. Se não, mostra "Produto removido"
+                        Produto = i.Product != null ? i.Product.Name : "Produto removido",
+
+                        // Quantidade vendida
+                        Quantidade = i.Quantity,
+
+                        // Preço unitário do produto (ou 0 se produto foi removido)
+                        PrecoUnitario = i.Product != null ? i.Product.Price : 0,
+
+                        // Subtotal = preço x quantidade (ou 0 se produto foi removido)
+                        Subtotal = i.Product != null ? i.Product.Price * i.Quantity : 0
+                    }).ToList() // Converte para lista
+                })
+                .ToListAsync(); // Executa a consulta de forma assíncrona
+
+            // Retorna o resultado como JSON
             return Ok(salesWithItems);
         }
+
     }
 }

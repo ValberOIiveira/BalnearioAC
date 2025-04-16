@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => renderizarProdutos());
 async function GetSales(){
     try {
 
-        const response = await apiRequest('http://localhost:5237/sales', 'GET');
+        const response = await apiRequest('http://localhost:5237/sales/completo', 'GET');
         const table = document.getElementById('vendas');
         table.innerHTML = '';
         response.forEach((sale) => {

@@ -1,3 +1,4 @@
+
 INSERT INTO user_type (name) VALUES ('Administrador'), ('Funcionário'), ('Visitante'), ('Usuário');
 
 INSERT INTO users (name, cpf, email, phone, age, passwd, id_user_type)
@@ -11,7 +12,7 @@ VALUES (1, 'Atendente', 2500.00, '2022-02-01');
 INSERT INTO visitors (name, cpf, age, id_user)
 VALUES ('Maria Visitante', '987.654.321-00', '1995-05-15', 2);
 
-INSERT INTO kiosk (capacity, price, status) VALUES (6, 100.00, 'Disponível');
+INSERT INTO kiosks (capacity, price, status) VALUES (6, 100.00, 'Disponível');
 
 INSERT INTO reservations (start_date, end_date, id_visitor, id_kiosk)
 VALUES ('2025-04-10', '2025-04-12', 1, 1);
