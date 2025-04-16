@@ -103,6 +103,7 @@ namespace BalnearioAC.Controllers
 
             return Ok(activities);
         }
+<<<<<<< Updated upstream
          [HttpGet("salesbyemployee")]
         public async Task<ActionResult<IEnumerable<object>>> GetSalesByEmployeeReport(
             [FromQuery] DateTime? startDate = null,
@@ -131,6 +132,23 @@ namespace BalnearioAC.Controllers
                 .ToListAsync();
 
             return Ok(salesByEmployeeReport);
+=======
+
+        [HttpGet("product-sold")]
+        public async Task<IEnumerable<object>> GetProductSoldReport()
+        {
+            return await _context.ItemSales
+                .Include(its => its.Product)
+                .GroupBy(its => new { its.ProductId, its.Product.Name, its.Product.Price })
+                .Select(g => new
+                {
+                    id = g.Key.ProductId,
+                    name = g.Key.Name,
+                    quantity = g.Sum(its => its.Quantity),
+                    price = g.Key.Price
+                })
+                .ToListAsync();
+>>>>>>> Stashed changes
         }
     }
 }

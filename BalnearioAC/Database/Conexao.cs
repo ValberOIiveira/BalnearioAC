@@ -23,7 +23,13 @@ namespace BalnearioAC.Database
         public DbSet<Models.Report> Reports { get; set; }
         public DbSet<Models.ItemSale> ItemSales { get; set; }
         public DbSet<Models.ReportReservation> ReportReservations { get; set; }
+<<<<<<< Updated upstream
         public DbSet<Models.ReportSalesByEmployee> ReportSalesByEmployee { get; set; }
+=======
+        public DbSet<Models.ReportReservation> ReportProductsSold { get; set; }
+
+        
+>>>>>>> Stashed changes
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

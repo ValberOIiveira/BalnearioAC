@@ -1,9 +1,9 @@
 import { apiRequest } from "./script.js";
 
 
-listarProdutos();
+getReportReservation();
 
-async function listarProdutos() {
+async function getReportReservation() {
     try {
         const data = await apiRequest('http://localhost:5237/api/Relatorios/reservations');
 
