@@ -18,5 +18,7 @@ namespace BalnearioAC.Models
 
         [Column("qtd")]
         public int Quantity { get; set; }
+        [Column("category")]
+        public string Category { get; set; }
     }
 }
