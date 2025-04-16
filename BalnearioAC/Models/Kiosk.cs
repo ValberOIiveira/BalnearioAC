@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BalnearioAC.Models
 {
-    [Table("kiosk")]
+    [Table("kiosks")]
     public class Kiosk
     {
         [Key]
