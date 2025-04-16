@@ -79,6 +79,31 @@ Abaixo está o Diagrama Entidade-Relacionamento (DER) que representa visualmente
 
 ---
 
+## 🛠️ Arquitetura do Projeto
+
+Nosso sistema utiliza o modelo mvc separando em pastas tudo que precisamos para fazer um sistema de ponta a ponta, desde a conexão com o banco de dados até os arquivos das telas que mostraremos.
+
+### **Divisão do Sistema**:
+
+| Componente         | Tecnologias                          | Responsabilidade                                                        |
+|--------------------|--------------------------------------|-------------------------------------------------------------------------|
+| **Frontend**       | HTML, CSS, JavaScript                | Responsável pela interface web, proporcionando uma experiência interativa e intuitiva para clientes e funcionários. |
+| **Backend**        | ASP.NET Core Web API                 | Responsável pela lógica de negócio, processamento de dados e implementação de APIs para comunicação com o frontend. |
+| **Banco de Dados** | PostgreSQL + Entity Framework Core   | Armazena e gerencia os dados do sistema, garantindo integridade, performance e escalabilidade. O Entity Framework Core é utilizado para a abstração e interação com o banco. |
+
+---
+## 🖥️ Arquitetura MVC
+
+No projeto **Balneário Rancho da Capivara**, a arquitetura **MVC** é implementada da seguinte forma:
+
+- **Model**: Utilizamos **Entity Framework Core** para mapear as tabelas do banco de dados PostgreSQL, realizando as operações de CRUD (criar, ler, atualizar e excluir) de dados como `reservas`, `produtos`, `vendas`, etc.
+  
+- **View**: A interface do usuário é desenvolvida com **HTML**, **CSS** e **JavaScript**. A **View** exibe dados ao usuário, como as páginas de agendamento de reservas, a galeria de fotos e o mapa de localização.
+
+- **Controller**: Os **Controllers** no **ASP.NET Core Web API** são responsáveis por controlar a lógica do sistema. Eles processam as requisições HTTP, interagem com o **Model** e retornam as respostas para a **View**. Os Controllers gerenciam ações como o cadastro de visitantes, a criação de reservas e o registro de vendas.
+
+
+---
 ## 📋 Funcionalidades do Sistema
 
 ### 👤 Cliente (/cliente)
