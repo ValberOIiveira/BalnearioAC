@@ -1,5 +1,3 @@
--- CRIAÇÃO DO BANCO
-CREATE DATABASE Resort;
 
 -- TABELAS
 CREATE TABLE user_type (
@@ -58,8 +56,8 @@ CREATE TABLE products (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     price DECIMAL(10,2),
-    qtd INTEGER,
-    category VARCHAR(255)
+    category VARCHAR(255),
+    qtd INTEGER
 );
 
 CREATE TABLE sales (
@@ -190,6 +188,8 @@ CREATE TABLE report_log_sales (
     FOREIGN KEY (sale_id) REFERENCES sales(id) ON DELETE SET NULL,
     FOREIGN KEY (performed_by) REFERENCES users(id) ON DELETE SET NULL
 );
+
+
 
 -- TRIGGERS E FUNÇÕES
 

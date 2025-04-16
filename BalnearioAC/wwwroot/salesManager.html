@@ -136,7 +136,8 @@
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal('modalProduto')">&times;</span>
             <h2>Novo Produto</h2>
-            <form>
+            <form id="produtoForm">
+                <input type="hidden" id="id">
                 <input id="name" type="text" placeholder="Nome do Produto" required />
                 <input id="category" type="text" placeholder="Categoria" required />
                 <input id="price" type="number" placeholder="Preço" required />
@@ -172,7 +173,7 @@
                     </div>
                     <div class="modal-acoes">
                         <button class="btn btn-outline" onclick="limparCarrinho()">Limpar</button>
-                        <button class="btn btn-green" onclick="finalizarVenda()">Finalizar</button>
+                        <button class="btn btn-green" onclick="finalizarVenda( event )" >Finalizar</button>
                     </div>
                 </div>
             </div>
@@ -182,5 +183,5 @@
 
 <script src="./js/modal&switch.js"></script>
 <script src="./js/sales.js" type="module" ></script>
-
+<script src="./js/ProdutoCRUD.js" type="module"></script>
 </html>
