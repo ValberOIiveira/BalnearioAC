@@ -1,26 +1,30 @@
+-- Inserindo tipos de usuários
+INSERT INTO user_type (name) VALUES 
+('Admin'),
+('Employee'),
+('Visitor');
 
-INSERT INTO user_type (name) VALUES ('Administrador'), ('Funcionário'), ('Visitante'), ('Usuário');
+-- Inserindo usuários base
+INSERT INTO users (name, cpf, email, phone, age, passwd, id_user_type) VALUES
+('João Admin', '111.111.111-11', 'admin@resort.com', '11999999999', '1980-01-01', 'adminpass', 1),
+('Maria Funcionária', '222.222.222-22', 'func@resort.com', '11988888888', '1990-05-10', 'funcpass', 2),
+('Carlos Visitante', '333.333.333-33', 'visitante@resort.com', '11977777777', '2000-07-15', 'visitpass', 3);
 
-INSERT INTO users (name, cpf, email, phone, age, passwd, id_user_type)
-VALUES 
-('João da Silva', '123.456.782-00', 'joao@eail.com', '11999999999', '1990-01-01', 'senha123', 2),
-('Maria Visitante', '987.654.322-00', 'maria@emil.com', '11888888888', '1995-05-15', 'visita456', 3);
+-- Inserindo funcionário vinculado ao usuário
+INSERT INTO employees (id_user, role, salary, admission_date) VALUES
+(2, 'Atendente', 3000.00, '2022-03-01');
 
-INSERT INTO employees (id_user, role, salary, admission_date)
-VALUES (1, 'Atendente', 2500.00, '2022-02-01');
+-- Inserindo visitante vinculado ao usuário
+INSERT INTO visitors (name, cpf, age, id_user) VALUES
+('Carlos Visitante', '333.333.333-33', '2000-07-15', 3);
 
-INSERT INTO visitors (name, cpf, age, id_user)
-VALUES ('Maria Visitante', '987.624.321-00', '1995-05-15', 2);
+-- Inserindo quiosques
+INSERT INTO kiosks (capacity, price, status) VALUES
+(4, 150.00, 'Disponível'),
+(6, 200.00, 'Disponível');
 
-INSERT INTO kiosks (capacity, price, status) VALUES (6, 100.00, 'Disponível');
-
-INSERT INTO reservations (start_date, end_date, id_visitor, id_kiosk)
-VALUES ('2025-04-10', '2025-04-12', 1, 1);
-
-INSERT INTO products (name, price, qtd) VALUES ('Água Mineral', 3.50, 100);
-
-INSERT INTO sales (id_employee, sale_date, total_value)
-VALUES (1, '2025-04-09', 7.00);
-
-INSERT INTO items_sale (id_sale, id_product, qtd)
-VALUES (1, 1, 2);
+-- Inserindo produtos
+INSERT INTO products (name, price, qtd) VALUES
+('Coca-Cola Lata', 5.00, 100),
+('Água Mineral', 3.00, 200),
+('Churrasco Completo', 50.00, 20);
