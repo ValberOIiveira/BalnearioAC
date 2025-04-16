@@ -23,6 +23,7 @@ namespace BalnearioAC.Database
         public DbSet<Models.Report> Reports { get; set; }
         public DbSet<Models.ItemSale> ItemSales { get; set; }
         public DbSet<Models.ReportReservation> ReportReservations { get; set; }
+        public DbSet<Models.ReportSalesByEmployee> ReportSalesByEmployee { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
