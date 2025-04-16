@@ -35,5 +35,6 @@ namespace BalnearioAC.Models
         [ForeignKey("user_type")]
         [Column("id_user_type")]
         public int Id_user_type { get; set; }
+
     }
 }

@@ -114,11 +114,12 @@ CREATE TABLE log_user_activity (
 CREATE TABLE report_reservations (
     id SERIAL PRIMARY KEY,
     report_date DATE DEFAULT CURRENT_DATE,
-    visitor_name VARCHAR(255),
+    user_id INTEGER,
     kiosk_id INTEGER,
     start_date DATE,
     end_date DATE,
-    FOREIGN KEY (kiosk_id) REFERENCES kiosks(id)
+    FOREIGN KEY (kiosk_id) REFERENCES kiosks(id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 CREATE TABLE report_kiosk_occupancy (

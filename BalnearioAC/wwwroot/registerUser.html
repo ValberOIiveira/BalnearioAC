@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rancho da Capivara - Cadastro</title>
     <link rel="shortcut icon" href="./assets/img/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/register/register.css">
+    <link rel="stylesheet" href="./css/utilidades/componentes.css">
+    <link rel="stylesheet" href="./css/utilidades/cores.css">
+    <link rel="stylesheet" href="./css/utilidades/tipografia.css">
+    <link rel="stylesheet" href="./css/global/global.css">
 </head>
 
 <body class="bg-4 color-1 font-2-s layout-normal">
@@ -80,41 +84,4 @@
             </div>
         </section>
     </main>
-
-    <!-- MODAL NOVA VENDA -->
-    <div id="modalVenda" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal('modalVenda')">&times;</span>
-            <h2>Nova Venda</h2>
-            <p class="font-2-s">Conteúdo do formulário de nova venda aqui...</p>
-        </div>
-    </div>
-
-    <!-- MODAL NOVO PRODUTO -->
-    <div id="modalProduto" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal('modalProduto')">&times;</span>
-            <h2>Novo Produto</h2>
-            <p class="font-2-s">Conteúdo do formulário de novo produto aqui...</p>
-        </div>
-    </div>
-
-    <script>
-        function openModal(id) {
-            document.getElementById(id).classList.add('show');
-        }
-
-        function closeModal(id) {
-            document.getElementById(id).classList.remove('show');
-        }
-
-        function switchTab(tab) {
-            document.querySelectorAll('.tab').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
-            document.querySelector(`.tab[onclick*='${tab}']`).classList.add('active');
-            document.getElementById(`tab-${tab}`).classList.add('active');
-        }
-    </script>
 </body>
-
-</html>
