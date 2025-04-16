@@ -9,6 +9,7 @@
     <link rel="shortcut icon" href="./assets/img/logo.png" type="image/x-icon" />
     <script src="https://kit.fontawesome.com/a2e00f7c45.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/global/navbar.css" />
+    <link rel="stylesheet" href="./css/global/modal.css">
     <link rel="stylesheet" href="./css/home/reservationUser.css">
     <link rel="stylesheet" href="./css/utilidades/componentes.css">
     <link rel="stylesheet" href="./css/utilidades/cores.css">
@@ -74,6 +75,9 @@
                                     </option>
                                 </select>
                             </div>
+                            <button type="button" class="btn-add-visitor" onclick="openModal('modalVisitantes')">
+                                <i class="fa-solid fa-user-plus"></i> Adicionar Visitantes
+                            </button>
                         </div>
                     </section>
 
@@ -95,7 +99,28 @@
             </section>
         </main>
     </div>
+    <!-- antes de </body> -->
+    <div id="modalVisitantes" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modalVisitantes')">&times;</span>
+            <h2 class="font-1-l color-1">Cadastrar visitante</h2>
+
+            <form id="formVisitante" class="visitor-form">
+                <label for="nome">Nome do visitante</label>
+                <input type="text" name="nome" placeholder="Nome completo" required />
+                <label for="cpf">CPF do visitante</label>
+                <input type="text" name="cpf" placeholder="CPF" required />
+                <label for="nascimento">Data de nascimento</label>
+                <input type="date" name="nascimento" placeholder="Data nascimento" required />
+                <button type="submit">Adicionar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- scripts -->
+    <script src="./js/modal.js"></script>
     <script src="./js/reservationTemp.js"></script>
+
 </body>
 
 </html>
