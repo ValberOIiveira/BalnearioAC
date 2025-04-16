@@ -103,7 +103,6 @@ namespace BalnearioAC.Controllers
 
             return Ok(activities);
         }
-<<<<<<< Updated upstream
          [HttpGet("salesbyemployee")]
         public async Task<ActionResult<IEnumerable<object>>> GetSalesByEmployeeReport(
             [FromQuery] DateTime? startDate = null,
@@ -132,7 +131,6 @@ namespace BalnearioAC.Controllers
                 .ToListAsync();
 
             return Ok(salesByEmployeeReport);
-=======
 
         [HttpGet("product-sold")]
         public async Task<IEnumerable<object>> GetProductSoldReport()
@@ -148,7 +146,6 @@ namespace BalnearioAC.Controllers
                     price = g.Key.Price
                 })
                 .ToListAsync();
->>>>>>> Stashed changes
         }
     }
 }
