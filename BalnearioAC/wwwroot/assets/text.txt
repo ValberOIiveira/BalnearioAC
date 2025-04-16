@@ -1,0 +1,34 @@
+wwwroot
+│   ├── assets/
+│   │   └── img/
+|   |
+│   ├── css
+│   │   ├── global/
+│   │   |   ├── global.css
+│   │   |   └── navbar.css
+│   │   │
+│   │   ├── login/
+│   │   |   └── login.css
+│   │   |
+│   │   ├── register/
+│   │   |   └── register.css
+│   │   │
+│   │   ├── home/
+│   │   |   └── homeManager.css
+│   │   |
+│   │   ├── utilidades/
+│   │   |   ├── componentes.css
+│   │   |   ├── cores.css
+│   │   |   └── tipografia.css
+│   │   │
+│   │   └── style.css
+│   │
+│   ├── js/
+│   │
+│   ├── loginUser.html
+│   ├── registerUser.html
+│   ├── loginEmployee.html
+│   ├── registerEmployee.html
+│   ├── homeManager.html
+│   ├──
+
