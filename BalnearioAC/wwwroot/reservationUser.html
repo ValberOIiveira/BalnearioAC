@@ -1,0 +1,126 @@
+<!-- reservationUser.html ajustado -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rancho da Capivara - Reserva</title>
+    <link rel="shortcut icon" href="./assets/img/logo.png" type="image/x-icon" />
+    <script src="https://kit.fontawesome.com/a2e00f7c45.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/global/navbar.css" />
+    <link rel="stylesheet" href="./css/global/modal.css">
+    <link rel="stylesheet" href="./css/home/reservationUser.css">
+    <link rel="stylesheet" href="./css/utilidades/componentes.css">
+    <link rel="stylesheet" href="./css/utilidades/cores.css">
+    <link rel="stylesheet" href="./css/utilidades/tipografia.css">
+    <link rel="stylesheet" href="./css/global/global.css">
+</head>
+
+<body>
+    <div class="layout">
+        <aside class="sidebar" role="complementary">
+            <div class="container-nav">
+                <header class="sidebar-header">
+                    <img src="./assets/img/logo-vertical.png" alt="Logo Rancho da Capivara" />
+                </header>
+                <nav class="sidebar-nav" aria-label="Menu lateral">
+                    <ul>
+                        <li><a href="./homeUser.html"><i class="fa-solid fa-house"></i> Início</a></li>
+                        <li class="active"><a href="./reservationUser.html"><i class="fa-solid fa-calendar-check"></i>
+                                Minhas Reservas</a></li>
+                        <li><a href="./home.html"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <footer class="sidebar-footer">
+                <p class="font-2-xs color-5">Rancho da Capivara © 2025</p>
+            </footer>
+        </aside>
+
+        <main class="dashboard">
+            <section class="container">
+                <header class="user-welcome">
+                    <h1 class="font-1-xl color-1">Bem-vindo, João!</h1>
+                    <p class="font-2-s color-1">Planeje a sua estadia perfeita no Rancho da Capivara. Escolha uma data e
+                        espaço.</p>
+                </header>
+
+                <div class="reservation-grid">
+                    <section class="reservation-form">
+                        <h2 class="font-1-l color-1">Selecione seu Espaço</h2>
+                        <p class="font-2-s color-5">Escolha o que melhor atende às suas necessidades</p>
+                        <div class="form-row">
+                            <div>
+                                <label>Data de Check-in</label>
+                                <input type="date" id="data-checkin" />
+                            </div>
+                            <div>
+                                <label>Data de Check-out</label>
+                                <input type="date" id="data-checkout" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div>
+                                <label>Tipo de Quiosque ou Churrasqueira</label>
+                                <select id="tipo-quiosque">
+                                    <option selected>Selecione um</option>
+                                    <option value="Quiosque Beira-Rio">Quiosque Beira-Rio</option>
+                                    <option value="Quiosque Sombra Natural">Quiosque Sombra Natural</option>
+                                    <option value="Quiosque Central">Quiosque Central</option>
+                                    <option value="Quiosque Infantil">Quiosque Infantil</option>
+                                    <option value="Quiosque Panorâmico">Quiosque Panorâmico</option>
+                                    <option value="Churrasqueira Coberta - Pedra">Churrasqueira Coberta - Pedra</option>
+                                    <option value="Churrasqueira Coberta - Madeira">Churrasqueira Coberta - Madeira
+                                    </option>
+                                </select>
+                            </div>
+                            <button type="button" class="btn-add-visitor" onclick="openModal('modalVisitantes')">
+                                <i class="fa-solid fa-user-plus"></i> Adicionar Visitantes
+                            </button>
+                        </div>
+                    </section>
+
+                    <aside class="reservation-summary">
+                        <h2 class="font-1-l color-1">Resumo da Reserva</h2>
+                        <p class="color-5 font-2-s" id="resumo-placeholder"><i>Nenhum espaço selecionado</i></p>
+                        <ul class="summary-list" id="resumo-atual"></ul>
+                        <div class="summary-total">
+                            <strong>Total:</strong> <span id="resumo-total">R$ 0</span>
+                        </div>
+                        <button class="btn btn-green">Confirmar Reserva</button>
+                    </aside>
+                </div>
+
+                <section id="reserva-confirmada" class="reserva-confirmada">
+                    <h2 class="font-1-l color-1">Reservas Realizadas</h2>
+                    <div id="lista-reservas"></div>
+                </section>
+            </section>
+        </main>
+    </div>
+    <!-- antes de </body> -->
+    <div id="modalVisitantes" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modalVisitantes')">&times;</span>
+            <h2 class="font-1-l color-1">Cadastrar visitante</h2>
+
+            <form id="formVisitante" class="visitor-form">
+                <label for="nome">Nome do visitante</label>
+                <input type="text" name="nome" placeholder="Nome completo" required />
+                <label for="cpf">CPF do visitante</label>
+                <input type="text" name="cpf" placeholder="CPF" required />
+                <label for="nascimento">Data de nascimento</label>
+                <input type="date" name="nascimento" placeholder="Data nascimento" required />
+                <button type="submit">Adicionar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- scripts -->
+    <script src="./js/modal.js"></script>
+    <script src="./js/reservationTemp.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+wwwroot
+│   ├── assets/
+│   │   └── img/
+│   │       ├── galeria/
+│   │       ├── landingPage/
+│   │       └── quartos/
+|   |
+│   ├── css
+│   │   ├── global/
+│   │   |   ├── global.css
+│   │   |   ├── modal.css
+│   │   |   └── header.css
+│   │   │
+│   │   ├── home/
+│   │   |   ├── home.css
+│   │   |   ├── homeUser.css
+│   │   |   ├── reservationUser.css
+│   │   |   └── salesManager.css
+│   │   │
+│   │   ├── login/
+│   │   |   └── login.css
+│   │   |
+│   │   ├── register/
+│   │   |   └── register.css
+│   │   |
+│   │   ├── utilidades/
+│   │   |   ├── componentes.css
+│   │   |   ├── cores.css
+│   │   |   └── tipografia.css
+│   │   │
+│   │   └── style.css
+│   │
+│   ├── js/
+│   │
+│   ├── loginUser.html
+│   ├── loginEmployee.html
+│   ├── registerUser.html
+│   ├── registerEmployee.html
+│   ├── salesManager.html
+│   ├── reservationUser.html
+│   └── homeUser.html
+
+
