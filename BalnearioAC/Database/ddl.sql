@@ -1,5 +1,7 @@
+-- CRIAÇÃO DO BANCO
 CREATE DATABASE Resort;
 
+-- TABELAS
 CREATE TABLE user_type (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL
@@ -76,20 +78,14 @@ CREATE TABLE items_sale (
     FOREIGN KEY (id_product) REFERENCES products(id) ON DELETE SET NULL
 );
 
-CREATE TABLE report (
-    id SERIAL PRIMARY KEY,
-    type VARCHAR(255),
-    generation_date DATE
-);
-
+-- LOGS E RELATÓRIOS
 CREATE TABLE log_reservations (
     id SERIAL PRIMARY KEY,
     id_reservation INTEGER,
     action VARCHAR(50), 
     action_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     performed_by INTEGER,
-    FOREIGN KEY (id_reservation) REFERENCES reservations(id),
-    FOREIGN KEY (performed_by) REFERENCES users(id)
+    FOREIGN KEY (performed_by) REFERENCES users(id) ON DELETE SET NULL
 );
 
 CREATE TABLE log_sales (
@@ -99,8 +95,8 @@ CREATE TABLE log_sales (
     action_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     performed_by INTEGER,
     details JSONB,
-    FOREIGN KEY (id_sale) REFERENCES sales(id),
-    FOREIGN KEY (performed_by) REFERENCES users(id)
+    FOREIGN KEY (id_sale) REFERENCES sales(id) ON DELETE SET NULL,
+    FOREIGN KEY (performed_by) REFERENCES users(id) ON DELETE SET NULL
 );
 
 CREATE TABLE log_user_activity (
@@ -108,9 +104,10 @@ CREATE TABLE log_user_activity (
     id_user INTEGER,
     activity_type VARCHAR(50),
     activity_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_user) REFERENCES users(id)
+    FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE SET NULL
 );
 
+-- Tabelas de Relatórios
 CREATE TABLE report_reservations (
     id SERIAL PRIMARY KEY,
     report_date DATE DEFAULT CURRENT_DATE,
@@ -167,7 +164,7 @@ CREATE TABLE report_user_activity (
     user_name VARCHAR(255),
     activity_type VARCHAR(50),
     activity_date TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
 );
 
 CREATE TABLE report_log_reservations (
@@ -177,8 +174,8 @@ CREATE TABLE report_log_reservations (
     action VARCHAR(50),
     action_date TIMESTAMP,
     performed_by INTEGER,
-    FOREIGN KEY (reservation_id) REFERENCES reservations(id),
-    FOREIGN KEY (performed_by) REFERENCES users(id)
+    FOREIGN KEY (reservation_id) REFERENCES reservations(id) ON DELETE SET NULL,
+    FOREIGN KEY (performed_by) REFERENCES users(id) ON DELETE SET NULL
 );
 
 CREATE TABLE report_log_sales (
@@ -189,6 +186,126 @@ CREATE TABLE report_log_sales (
     action_date TIMESTAMP,
     performed_by INTEGER,
     details JSONB,
-    FOREIGN KEY (sale_id) REFERENCES sales(id),
-    FOREIGN KEY (performed_by) REFERENCES users(id)
+    FOREIGN KEY (sale_id) REFERENCES sales(id) ON DELETE SET NULL,
+    FOREIGN KEY (performed_by) REFERENCES users(id) ON DELETE SET NULL
 );
+
+-- TRIGGERS E FUNÇÕES
+
+-- Log de Reservas
+CREATE OR REPLACE FUNCTION log_reservation_action()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF TG_OP = 'INSERT' THEN
+        INSERT INTO log_reservations (id_reservation, action, performed_by)
+        VALUES (NEW.id, 'INSERT', NEW.id_visitor);
+    ELSIF TG_OP = 'UPDATE' THEN
+        INSERT INTO log_reservations (id_reservation, action, performed_by)
+        VALUES (NEW.id, 'UPDATE', NEW.id_visitor);
+    ELSIF TG_OP = 'DELETE' THEN
+        INSERT INTO log_reservations (id_reservation, action, performed_by)
+        VALUES (OLD.id, 'DELETE', OLD.id_visitor);
+    END IF;
+    RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_log_reservation
+AFTER INSERT OR UPDATE ON reservations
+FOR EACH ROW EXECUTE FUNCTION log_reservation_action();
+
+CREATE TRIGGER trg_log_reservation_delete
+AFTER DELETE ON reservations
+FOR EACH ROW EXECUTE FUNCTION log_reservation_action();
+
+-- Log de Vendas
+CREATE OR REPLACE FUNCTION log_sale_action()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF TG_OP = 'INSERT' THEN
+        INSERT INTO log_sales (id_sale, action, performed_by, details)
+        VALUES (NEW.id, 'INSERT', NEW.id_employee, NULL);
+    ELSIF TG_OP = 'UPDATE' THEN
+        INSERT INTO log_sales (id_sale, action, performed_by, details)
+        VALUES (NEW.id, 'UPDATE', NEW.id_employee, NULL);
+    ELSIF TG_OP = 'DELETE' THEN
+        INSERT INTO log_sales (id_sale, action, performed_by, details)
+        VALUES (OLD.id, 'DELETE', OLD.id_employee, NULL);
+    END IF;
+    RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_log_sale
+AFTER INSERT OR UPDATE OR DELETE ON sales
+FOR EACH ROW EXECUTE FUNCTION log_sale_action();
+
+-- Log de Atividade do Usuário
+CREATE OR REPLACE FUNCTION log_user_activity_func()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO log_user_activity (id_user, activity_type)
+    VALUES (NEW.id, TG_OP);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_log_user_activity
+AFTER INSERT OR UPDATE ON users
+FOR EACH ROW EXECUTE FUNCTION log_user_activity_func();
+
+-- Atualiza status do quiosque ao reservar
+CREATE OR REPLACE FUNCTION update_kiosk_status_on_reservation()
+RETURNS TRIGGER AS $$
+BEGIN
+    UPDATE kiosks SET status = 'Ocupado' WHERE id = NEW.id_kiosk;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_update_kiosk_status
+AFTER INSERT ON reservations
+FOR EACH ROW EXECUTE FUNCTION update_kiosk_status_on_reservation();
+
+-- Libera quiosque ao deletar reserva
+CREATE OR REPLACE FUNCTION update_kiosk_status_on_reservation_delete()
+RETURNS TRIGGER AS $$
+BEGIN
+    UPDATE kiosks SET status = 'Disponível' WHERE id = OLD.id_kiosk;
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_update_kiosk_status_on_reservation_delete
+AFTER DELETE ON reservations
+FOR EACH ROW EXECUTE FUNCTION update_kiosk_status_on_reservation_delete();
+
+-- Atualiza estoque após venda
+CREATE OR REPLACE FUNCTION update_product_stock_on_sale()
+RETURNS TRIGGER AS $$
+BEGIN
+    UPDATE products SET qtd = qtd - NEW.qtd
+    WHERE id = NEW.id_product;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_update_product_stock_on_sale
+AFTER INSERT ON items_sale
+FOR EACH ROW EXECUTE FUNCTION update_product_stock_on_sale();
+
+-- Atualiza data de modificação do funcionário
+CREATE OR REPLACE FUNCTION update_employee_last_modified_date()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.role IS DISTINCT FROM OLD.role
+        OR NEW.salary IS DISTINCT FROM OLD.salary THEN
+        UPDATE employees SET admission_date = CURRENT_DATE WHERE id = NEW.id;
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_update_employee_last_modified_date
+AFTER UPDATE ON employees
+FOR EACH ROW EXECUTE FUNCTION update_employee_last_modified_date();
