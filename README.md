@@ -1,4 +1,9 @@
-# 🌊 Balneário Rancho da Capivara — Sistema de Gestão e Presença Digital
+<p align="center">
+  <img src="logo.png" alt="Logo Rancho da Capivara">
+</p>
+
+
+# Balneário Rancho da Capivara — Sistema de Gestão e Presença Digital
 
 Bem-vindo ao repositório oficial do sistema de gestão do Balneário Rancho da Capivara — um espaço de lazer familiar que agora se transforma em um dos pontos turísticos mais completos da região!
 
@@ -25,16 +30,8 @@ O sistema foi criado para atender as seguintes demandas:
 
 **Nome:** *Balneário Rancho da Capivara*
 
-**Justificativa:** o nome “Balneário Rancho da Capivara” traz uma identidade única e regional, remetendo à fauna local e ao clima acolhedor do interior. A capivara, símbolo de tranquilidade e socialização, representa bem o espírito do balneário: um espaço de convivência, lazer e natureza para todos.
+**Justificativa:** o nome “Balneário Rancho da Capivara” traz uma identidade única e regional, representando bem o local acolhedor do Balneário
 
-
----
-
-## 🌐 Navegação do Sistema
-
-- **/customer**: Galeria de fotos, localização (via Google Maps), agendamento de reservas
-- **/user**: Interface de atendimento, cadastro de visitantes, registro de vendas
-- **/manager**: Painel administrativo com gráficos, relatórios e controle de dados
 
 ---
 
