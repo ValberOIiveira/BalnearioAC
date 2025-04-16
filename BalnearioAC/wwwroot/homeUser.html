@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rancho da Capivara - Bem-vindo</title>
+    <link rel="shortcut icon" href="./assets/img/logo.png" type="image/x-icon" />
+    <script src="https://kit.fontawesome.com/a2e00f7c45.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/home/homeUser.css" />
+    <link rel="stylesheet" href="./css/global/navbar.css" />
+    <link rel="stylesheet" href="./css/utilidades/componentes.css">
+    <link rel="stylesheet" href="./css/utilidades/cores.css">
+    <link rel="stylesheet" href="./css/utilidades/tipografia.css">
+    <link rel="stylesheet" href="./css/global/global.css">
+</head>
+
+<body>
+    <div class="layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar" role="complementary">
+            <div class="container-nav">
+                <header class="sidebar-header">
+                    <img src="./assets/img/logo-vertical.png" alt="Logo Rancho da Capivara" />
+                </header>
+
+                <nav class="sidebar-nav" aria-label="Menu lateral">
+                    <ul>
+                        <li class="active"><a href="./homeUser.html"><i class="fa-solid fa-house"></i> Início</a></li>
+                        <li><a href="./reservationUser.html"><i class="fa-solid fa-calendar-check"></i>
+                                Minhas Reservas</a>
+                        </li>
+                        <li><a href="./home.html"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <footer class="sidebar-footer">
+                <p class="font-2-xs color-5">Rancho da Capivara © 2025</p>
+            </footer>
+        </aside>
+
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="dashboard">
+            <section class="container">
+                <header class="user-welcome">
+                    <h1 class="font-1-xl color-1">Bem-vindo, João!</h1>
+                    <p class="font-2-s color-1">Planeje sua estadia perfeita no Rancho da Capivara. Escolha um quarto e
+                        aproveite experiências inesquecíveis.</p>
+                </header>
+
+                <!-- QUARTOS DISPONÍVEIS -->
+                <section class="room-grid">
+                    <!-- Quiosque 1 -->
+                    <div class="room-card">
+                        <img src="./assets/img/quartos/quarto(1).jpg" alt="Quiosque Beira-Rio" />
+                        <div class="room-info">
+                            <span class="price-tag">R$ 180/dia</span>
+                            <h3>Quiosque Beira-Rio</h3>
+                            <p>Localizado próximo à margem, ideal para piqueniques e relaxamento com vista para a água.
+                            </p>
+                            <ul class="room-tags">
+                                <li>Churrasqueira</li>
+                                <li>Tomadas</li>
+                                <li>Capacidade: 8 pessoas</li>
+                            </ul>
+                            <button class="btn btn-green" onclick="window.location.href='./reservationUser.html'">Reservar</button>
+                        </div>
+                    </div>
+
+                    <!-- Quiosque 2 -->
+                    <div class="room-card">
+                        <img src="./assets/img/quartos/quarto(2).jpg" alt="Quiosque Sombra Natural" />
+                        <div class="room-info">
+                            <span class="price-tag">R$ 160/dia</span>
+                            <h3>Quiosque Sombra Natural</h3>
+                            <p>Perfeito para famílias que buscam conforto e sombra sob as árvores nativas do balneário.
+                            </p>
+                            <ul class="room-tags">
+                                <li>Área Gramada</li>
+                                <li>Banheiro Próximo</li>
+                                <li>Capacidade: 6 pessoas</li>
+                            </ul>
+                            <button class="btn btn-green" onclick="window.location.href='./reservationUser.html'">Reservar</button>
+                        </div>
+                    </div>
+
+                    <!-- Quiosque 3 -->
+                    <div class="room-card">
+                        <img src="./assets/img/quartos/quarto(3).jpg" alt="Quiosque Central" />
+                        <div class="room-info">
+                            <span class="price-tag">R$ 150/dia</span>
+                            <h3>Quiosque Central</h3>
+                            <p>Fácil acesso à cantina e área de banhos. Ideal para grupos e encontros de amigos.</p>
+                            <ul class="room-tags">
+                                <li>Água Potável</li>
+                                <li>Tomadas 220v</li>
+                                <li>Capacidade: 10 pessoas</li>
+                            </ul>
+                            <button class="btn btn-green" onclick="window.location.href='./reservationUser.html'">Reservar</button>
+                        </div>
+                    </div>
+
+                    <!-- Quiosque 4 -->
+                    <div class="room-card">
+                        <img src="./assets/img/quartos/quarto(4).jpg" alt="Quiosque Infantil" />
+                        <div class="room-info">
+                            <span class="price-tag">R$ 140/dia</span>
+                            <h3>Quiosque Infantil</h3>
+                            <p>Localizado próximo ao parquinho e área de lazer para crianças. Ótimo para famílias com
+                                filhos pequenos.</p>
+                            <ul class="room-tags">
+                                <li>Área Segura</li>
+                                <li>Churrasqueira</li>
+                                <li>Capacidade: 6 pessoas</li>
+                            </ul>
+                            <button class="btn btn-green" onclick="window.location.href='./reservationUser.html'">Reservar</button>
+                        </div>
+                    </div>
+
+                    <!-- Quiosque 5 -->
+                    <div class="room-card">
+                        <img src="./assets/img/quartos/quarto(5).jpg" alt="Quiosque Panorâmico" />
+                        <div class="room-info">
+                            <span class="price-tag">R$ 190/dia</span>
+                            <h3>Quiosque Panorâmico</h3>
+                            <p>Com vista ampla do balneário, oferece tranquilidade e privacidade. Ideal para momentos a
+                                dois.</p>
+                            <ul class="room-tags">
+                                <li>Vista Privilegiada</li>
+                                <li>Som Ambiente</li>
+                                <li>Capacidade: 4 pessoas</li>
+                            </ul>
+                            <button class="btn btn-green" onclick="window.location.href='./reservationUser.html'">Reservar</button>
+                        </div>
+                    </div>
+
+                    <!-- Churrasqueira Coberta 1 -->
+                    <div class="room-card">
+                        <img src="./assets/img/quartos/quarto(6).jpg" alt="Churrasqueira Coberta 1" />
+                        <div class="room-info">
+                            <span class="price-tag">R$ 250/dia</span>
+                            <h3>Churrasqueira Coberta - Pedra</h3>
+                            <p>Ambiente espaçoso, cobertura completa e estrutura com pia, mesa e bancos rústicos em
+                                pedra.</p>
+                            <ul class="room-tags">
+                                <li>Cobertura</li>
+                                <li>Churrasqueira de Alvenaria</li>
+                                <li>Capacidade: 15 pessoas</li>
+                            </ul>
+                            <button class="btn btn-green" onclick="window.location.href='./reservationUser.html'">Reservar</button>
+                        </div>
+                    </div>
+
+                    <!-- Churrasqueira Coberta 2 -->
+                    <div class="room-card">
+                        <img src="./assets/img/quartos/quarto(3).jpg" alt="Churrasqueira Coberta 2" />
+                        <div class="room-info">
+                            <span class="price-tag">R$ 270/dia</span>
+                            <h3>Churrasqueira Coberta - Madeira</h3>
+                            <p>Ideal para eventos em grupo. Ambiente coberto com churrasqueira, balcão e iluminação
+                                noturna.</p>
+                            <ul class="room-tags">
+                                <li>Área Iluminada</li>
+                                <li>Balcão e Pia</li>
+                                <li>Capacidade: 20 pessoas</li>
+                            </ul>
+                            <button class="btn btn-green" onclick="window.location.href='./reservationUser.html'">Reservar</button>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </main>
+    </div>
+
+    <script src="./js/modal&switch.js"></script>
+</body>
+
+</html>

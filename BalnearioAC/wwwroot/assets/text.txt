@@ -1,20 +1,27 @@
 wwwroot
 │   ├── assets/
 │   │   └── img/
+│   │       ├── galeria/
+│   │       ├── landingPage/
+│   │       └── quartos/
 |   |
 │   ├── css
 │   │   ├── global/
 │   │   |   ├── global.css
-│   │   |   └── navbar.css
+│   │   |   ├── modal.css
+│   │   |   └── header.css
+│   │   │
+│   │   ├── home/
+│   │   |   ├── home.css
+│   │   |   ├── homeUser.css
+│   │   |   ├── reservationUser.css
+│   │   |   └── salesManager.css
 │   │   │
 │   │   ├── login/
 │   │   |   └── login.css
 │   │   |
 │   │   ├── register/
 │   │   |   └── register.css
-│   │   │
-│   │   ├── home/
-│   │   |   └── homeManager.css
 │   │   |
 │   │   ├── utilidades/
 │   │   |   ├── componentes.css
@@ -26,9 +33,11 @@ wwwroot
 │   ├── js/
 │   │
 │   ├── loginUser.html
-│   ├── registerUser.html
 │   ├── loginEmployee.html
+│   ├── registerUser.html
 │   ├── registerEmployee.html
-│   ├── homeManager.html
-│   ├──
+│   ├── salesManager.html
+│   ├── reservationUser.html
+│   └── homeUser.html
+
 
