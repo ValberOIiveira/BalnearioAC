@@ -1,4 +1,7 @@
-/* homeUser.css */
+.dashboard {
+    padding: 40px 0;
+    flex: 1;
+}
 
 .room-grid {
     display: grid;

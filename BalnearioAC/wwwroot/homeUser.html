@@ -5,34 +5,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rancho da Capivara - Bem-vindo</title>
-    <link rel="stylesheet" href="./css/style.css" />
     <link rel="shortcut icon" href="./assets/img/logo.png" type="image/x-icon" />
     <script src="https://kit.fontawesome.com/a2e00f7c45.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/home/homeUser.css" />
+    <link rel="stylesheet" href="./css/global/navbar.css" />
+    <link rel="stylesheet" href="./css/utilidades/componentes.css">
+    <link rel="stylesheet" href="./css/utilidades/cores.css">
+    <link rel="stylesheet" href="./css/utilidades/tipografia.css">
+    <link rel="stylesheet" href="./css/global/global.css">
 </head>
 
 <body>
     <div class="layout">
         <!-- SIDEBAR -->
         <aside class="sidebar" role="complementary">
-            <header class="sidebar-header">
-                <img src="./assets/img/user-default.svg" alt="Foto de perfil" class="user-photo" />
-                <h3 class="font-2-m color-1">João Silva</h3>
-                <p class="font-2-xs color-5">joao.silva@email.com</p>
-            </header>
+            <div class="container-nav">
+                <header class="sidebar-header">
+                    <img src="./assets/img/logo-vertical.png" alt="Logo Rancho da Capivara" />
+                </header>
 
-            <nav class="sidebar-nav">
-                <ul>
-                    <li class="active"><a href="#"><i class="fa-solid fa-house"></i> Início</a></li>
-                    <li><a href="./reservationUser.html"><i class="fa-solid fa-calendar-check"></i> Minhas Reservas</a>
-                    </li>
-                    <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
-                </ul>
-            </nav>
-
-            <footer>
-                <p>Rancho da Capivara © 2025</p>
+                <nav class="sidebar-nav" aria-label="Menu lateral">
+                    <ul>
+                        <li class="active"><a href="./homeUser.html"><i class="fa-solid fa-house"></i> Início</a></li>
+                        <li><a href="./reservationUser.html"><i class="fa-solid fa-calendar-check"></i>
+                                Minhas Reservas</a>
+                        </li>
+                        <li><a href="./home.html"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <footer class="sidebar-footer">
+                <p class="font-2-xs color-5">Rancho da Capivara © 2025</p>
             </footer>
         </aside>
+
 
         <!-- CONTEÚDO PRINCIPAL -->
         <main class="dashboard">
@@ -45,104 +51,123 @@
 
                 <!-- QUARTOS DISPONÍVEIS -->
                 <section class="room-grid">
+                    <!-- Quiosque 1 -->
                     <div class="room-card">
-                        <img src="./assets/img/quarto1.jpg" alt="Suíte Luxo" />
+                        <img src="./assets/img/quartos/quarto(1).jpg" alt="Quiosque Beira-Rio" />
                         <div class="room-info">
-                            <span class="price-tag">R$ 750/noite</span>
-                            <h3>Suíte Luxo com Vista para o Mar</h3>
-                            <p>Espaçosa suíte com varanda privativa e vista deslumbrante. Decoração elegante e moderna.
+                            <span class="price-tag">R$ 180/dia</span>
+                            <h3>Quiosque Beira-Rio</h3>
+                            <p>Localizado próximo à margem, ideal para piqueniques e relaxamento com vista para a água.
                             </p>
                             <ul class="room-tags">
-                                <li>Vista para o Mar</li>
-                                <li>Hidromassagem</li>
-                                <li>Wi-Fi</li>
+                                <li>Churrasqueira</li>
+                                <li>Tomadas</li>
+                                <li>Capacidade: 8 pessoas</li>
                             </ul>
-                            <p class="font-2-xs color-5">Para até 2 pessoas</p>
-                            <button class="btn btn-green">Ver Detalhes</button>
+                            <button class="btn btn-green" onclick="window.location.href='./reservationUser.html'">Reservar</button>
                         </div>
                     </div>
 
+                    <!-- Quiosque 2 -->
                     <div class="room-card">
-                        <img src="./assets/img/quarto2.jpg" alt="Bangalo Familiar" />
+                        <img src="./assets/img/quartos/quarto(2).jpg" alt="Quiosque Sombra Natural" />
                         <div class="room-info">
-                            <span class="price-tag">R$ 950/noite</span>
-                            <h3>Bangalô Familiar</h3>
-                            <p>Perfeito para famílias, com dois quartos, jardim e área de churrasco.</p>
+                            <span class="price-tag">R$ 160/dia</span>
+                            <h3>Quiosque Sombra Natural</h3>
+                            <p>Perfeito para famílias que buscam conforto e sombra sob as árvores nativas do balneário.
+                            </p>
                             <ul class="room-tags">
-                                <li>2 Quartos</li>
-                                <li>Jardim</li>
-                                <li>Área de Churrasco</li>
+                                <li>Área Gramada</li>
+                                <li>Banheiro Próximo</li>
+                                <li>Capacidade: 6 pessoas</li>
                             </ul>
-                            <p class="font-2-xs color-5">Para até 4 pessoas</p>
-                            <button class="btn btn-green">Ver Detalhes</button>
+                            <button class="btn btn-green" onclick="window.location.href='./reservationUser.html'">Reservar</button>
                         </div>
                     </div>
 
+                    <!-- Quiosque 3 -->
                     <div class="room-card">
-                        <img src="./assets/img/quarto2.jpg" alt="Bangalo Familiar" />
+                        <img src="./assets/img/quartos/quarto(3).jpg" alt="Quiosque Central" />
                         <div class="room-info">
-                            <span class="price-tag">R$ 950/noite</span>
-                            <h3>Bangalô Familiar</h3>
-                            <p>Perfeito para famílias, com dois quartos, jardim e área de churrasco.</p>
+                            <span class="price-tag">R$ 150/dia</span>
+                            <h3>Quiosque Central</h3>
+                            <p>Fácil acesso à cantina e área de banhos. Ideal para grupos e encontros de amigos.</p>
                             <ul class="room-tags">
-                                <li>2 Quartos</li>
-                                <li>Jardim</li>
-                                <li>Área de Churrasco</li>
+                                <li>Água Potável</li>
+                                <li>Tomadas 220v</li>
+                                <li>Capacidade: 10 pessoas</li>
                             </ul>
-                            <p class="font-2-xs color-5">Para até 4 pessoas</p>
-                            <button class="btn btn-green">Ver Detalhes</button>
+                            <button class="btn btn-green" onclick="window.location.href='./reservationUser.html'">Reservar</button>
                         </div>
                     </div>
 
+                    <!-- Quiosque 4 -->
                     <div class="room-card">
-                        <img src="./assets/img/quarto2.jpg" alt="Bangalo Familiar" />
+                        <img src="./assets/img/quartos/quarto(4).jpg" alt="Quiosque Infantil" />
                         <div class="room-info">
-                            <span class="price-tag">R$ 950/noite</span>
-                            <h3>Bangalô Familiar</h3>
-                            <p>Perfeito para famílias, com dois quartos, jardim e área de churrasco.</p>
+                            <span class="price-tag">R$ 140/dia</span>
+                            <h3>Quiosque Infantil</h3>
+                            <p>Localizado próximo ao parquinho e área de lazer para crianças. Ótimo para famílias com
+                                filhos pequenos.</p>
                             <ul class="room-tags">
-                                <li>2 Quartos</li>
-                                <li>Jardim</li>
-                                <li>Área de Churrasco</li>
+                                <li>Área Segura</li>
+                                <li>Churrasqueira</li>
+                                <li>Capacidade: 6 pessoas</li>
                             </ul>
-                            <p class="font-2-xs color-5">Para até 4 pessoas</p>
-                            <button class="btn btn-green">Ver Detalhes</button>
+                            <button class="btn btn-green" onclick="window.location.href='./reservationUser.html'">Reservar</button>
                         </div>
                     </div>
 
+                    <!-- Quiosque 5 -->
                     <div class="room-card">
-                        <img src="./assets/img/quarto2.jpg" alt="Bangalo Familiar" />
+                        <img src="./assets/img/quartos/quarto(5).jpg" alt="Quiosque Panorâmico" />
                         <div class="room-info">
-                            <span class="price-tag">R$ 950/noite</span>
-                            <h3>Bangalô Familiar</h3>
-                            <p>Perfeito para famílias, com dois quartos, jardim e área de churrasco.</p>
+                            <span class="price-tag">R$ 190/dia</span>
+                            <h3>Quiosque Panorâmico</h3>
+                            <p>Com vista ampla do balneário, oferece tranquilidade e privacidade. Ideal para momentos a
+                                dois.</p>
                             <ul class="room-tags">
-                                <li>2 Quartos</li>
-                                <li>Jardim</li>
-                                <li>Área de Churrasco</li>
+                                <li>Vista Privilegiada</li>
+                                <li>Som Ambiente</li>
+                                <li>Capacidade: 4 pessoas</li>
                             </ul>
-                            <p class="font-2-xs color-5">Para até 4 pessoas</p>
-                            <button class="btn btn-green">Ver Detalhes</button>
+                            <button class="btn btn-green" onclick="window.location.href='./reservationUser.html'">Reservar</button>
                         </div>
                     </div>
 
+                    <!-- Churrasqueira Coberta 1 -->
                     <div class="room-card">
-                        <img src="./assets/img/quarto2.jpg" alt="Bangalo Familiar" />
+                        <img src="./assets/img/quartos/quarto(6).jpg" alt="Churrasqueira Coberta 1" />
                         <div class="room-info">
-                            <span class="price-tag">R$ 950/noite</span>
-                            <h3>Bangalô Familiar</h3>
-                            <p>Perfeito para famílias, com dois quartos, jardim e área de churrasco.</p>
+                            <span class="price-tag">R$ 250/dia</span>
+                            <h3>Churrasqueira Coberta - Pedra</h3>
+                            <p>Ambiente espaçoso, cobertura completa e estrutura com pia, mesa e bancos rústicos em
+                                pedra.</p>
                             <ul class="room-tags">
-                                <li>2 Quartos</li>
-                                <li>Jardim</li>
-                                <li>Área de Churrasco</li>
+                                <li>Cobertura</li>
+                                <li>Churrasqueira de Alvenaria</li>
+                                <li>Capacidade: 15 pessoas</li>
                             </ul>
-                            <p class="font-2-xs color-5">Para até 4 pessoas</p>
-                            <button class="btn btn-green">Ver Detalhes</button>
+                            <button class="btn btn-green" onclick="window.location.href='./reservationUser.html'">Reservar</button>
                         </div>
                     </div>
 
-                    <!-- Adicione mais cards conforme necessário -->
+                    <!-- Churrasqueira Coberta 2 -->
+                    <div class="room-card">
+                        <img src="./assets/img/quartos/quarto(3).jpg" alt="Churrasqueira Coberta 2" />
+                        <div class="room-info">
+                            <span class="price-tag">R$ 270/dia</span>
+                            <h3>Churrasqueira Coberta - Madeira</h3>
+                            <p>Ideal para eventos em grupo. Ambiente coberto com churrasqueira, balcão e iluminação
+                                noturna.</p>
+                            <ul class="room-tags">
+                                <li>Área Iluminada</li>
+                                <li>Balcão e Pia</li>
+                                <li>Capacidade: 20 pessoas</li>
+                            </ul>
+                            <button class="btn btn-green" onclick="window.location.href='./reservationUser.html'">Reservar</button>
+                        </div>
+                    </div>
                 </section>
             </section>
         </main>
