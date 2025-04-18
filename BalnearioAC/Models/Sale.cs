@@ -26,6 +26,6 @@ namespace BalnearioAC.Models
         public Employee? Employee { get; set; }
 
         // Relacionamento com a tabela ItemSales (uma venda pode ter vários itens)
-        public ICollection<ItemSale> ItemSales { get; set; } // Adicionando a coleção de itens de venda
+        public ICollection<ItemSale> ItemSales { get; set; } = new List<ItemSale>();
     }
 }

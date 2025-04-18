@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rancho da Capivara - Vendas</title>
     <link rel="shortcut icon" href="./assets/img/logo.png" type="image/x-icon" />
-    <script src="https://kit.fontawesome.com/a2e00f7c45.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/a2e00f7c45.js" crossorigin="anonymous"></script> -->
     <link rel="stylesheet" href="./css/global/modal.css">
     <link rel="stylesheet" href="./css/global/navbar.css" />
     <link rel="stylesheet" href="./css/home/salesManager.css">
@@ -88,43 +88,40 @@
 
                 <!-- TABELA DE PRODUTOS -->
                 <section class="sales-table tab-content active" id="tab-produtos" aria-label="Tabela de produtos">
-                    <div class="table-header">
-                        <div>Produto</div>
-                        <div>Categoria</div>
-                        <div>Preço</div>
-                        <div>Estoque</div>
-                        <div>Vendidos</div>
-                        <div>Ações</div>
-                    </div>
-                    <div class="table-row">
-                        <div>Água Mineral</div>
-                        <div>Bebidas</div>
-                        <div>R$ 5.00</div>
-                        <div>200</div>
-                        <div>58</div>
-                        <div class="table-actions">
-                            <button class="btn btn-outline">Editar</button>
-                        </div>
-                    </div>
+                    <table id="tabelaProdutos">
+                        <thead>
+                          <tr>
+                            <th>Produto</th>
+                            <th>Categoria</th>
+                            <th>Preço</th>
+                            <th>Estoque</th>
+                            <th>Vendidos</th>
+                            <th>Ações</th>
+                          </tr>
+                        </thead>
+                        <tbody id="tabelaProdutos tbody">
+                          
+                        </tbody>
+                      </table>
+                      
                 </section>
 
                 <section class="sales-table tab-content" id="tab-vendas" aria-label="Tabela de vendas">
-                    <div class="table-header">
-                        <div>Data</div>
-                        <div>Itens</div>
-                        <div>Total</div>
-                        <div>Pagamento</div>
-                        <div>Ações</div>
-                    </div>
-                    <div class="table-row">
-                        <div>12/04/2025</div>
-                        <div>3</div>
-                        <div>R$ 38,00</div>
-                        <div>PIX</div>
-                        <div class="table-actions">
-                            <button class="btn btn-outline">Editar</button>
-                        </div>
-                    </div>
+                    <table id="tabelaSales">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Data da Venda</th>
+                                <th>Valor Total</th>
+                                <th>Vendedor</th>
+                                <th>Produtos Vendidos</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaSales tbody">
+                            
+                        </tbody>
+                    </table>
+                    
                 </section>
 
             </section>
@@ -181,6 +178,7 @@
 </body>
 
 <script src="./js/modal&switch.js"></script>
-<script src="./js/sales.js"></script>
+<script src="./js/ProdutoCRUD.js" type="module"></script>
+<script src="./js/sales.js" type="module"></script>
 
 </html>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BalnearioAC.Database;
 using BalnearioAC.Models;
+using BalnearioAC.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,10 +21,37 @@ namespace BalnearioAC.Controllers
             _context = context;
         }
         [HttpGet]
-        public async Task<IEnumerable<Sale>> GetSales()
+        public async Task<ActionResult<IEnumerable<SaleDTO>>> GetSales()
         {
-            return await _context.Sales.ToListAsync();
+            var sales = await _context.Sales
+                .Include(s => s.Employee)
+                    .ThenInclude(e => e.User)
+                .Include(s => s.ItemSales)
+                    .ThenInclude(i => i.Product) // Inclui o Produto em cada ItemSale
+                .ToListAsync();
+
+            var salesDto = sales.Select(s => new SaleDTO
+            {
+                Id = s.Id,
+                SaleDate = s.SaleDate,
+                TotalValue = s.TotalValue,
+                EmployeeName = s.Employee?.User?.Name,
+                ItemSales = s.ItemSales?.Select(i => new ItemSaleDTO
+                {
+                    Id = i.Id,
+                    ProductId = i.ProductId ?? 0,
+                    ProductName = i.Product?.Name, // Nome do Produto
+                    Quantity = i.Quantity,
+                    UnitPrice = i.Product?.Price ?? 0
+                }).ToList()
+            }).ToList();
+
+            return Ok(salesDto);
         }
+
+
+
+
         [HttpPost]
         public async Task<IActionResult> PostSale([FromBody] Sale sale)
         {
@@ -35,8 +63,21 @@ namespace BalnearioAC.Controllers
             _context.Sales.Add(sale);
             await _context.SaveChangesAsync();
 
+
+            if (sale.ItemSales != null && sale.ItemSales.Any())
+            {
+                foreach (var item in sale.ItemSales)
+                {
+                    item.SaleId = sale.Id;
+                    _context.ItemSales.Add(item);
+                }
+
+                await _context.SaveChangesAsync();
+            }
+
             return sale.Id > 0 ? Ok(sale) : BadRequest("Erro ao cadastrar venda");
         }
+
 
         [HttpPut("{id}")]
         public async Task<IActionResult> PutSale(int id, [FromBody] Sale sale)

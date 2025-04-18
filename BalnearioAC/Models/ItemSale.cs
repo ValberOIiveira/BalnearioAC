@@ -1,29 +1,31 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BalnearioAC.Models
 {
-    [Table("items_sale")]
-    public class ItemSale
+    [Table("sales")]
+    public class Sale
     {
         [Key]
         [Column("id")]
         public int Id { get; set; }
 
-        [Column("id_sale")]
-        public int SaleId { get; set; }
+        [Column("id_employee")]
+        public int? EmployeeId { get; set; }
 
-        [Column("id_product")]
-        public int? ProductId { get; set; }
+        [Column("sale_date")]
+        public DateTime SaleDate { get; set; }
 
-        [Column("qtd")]
-        public int Quantity { get; set; }
+        [Column("total_value")]
+        public decimal? TotalValue { get; set; }
 
-        [ForeignKey("SaleId")]
-        public Sale Sale { get; set; } = null!;
+        // Relacionamento com a tabela Employee (um funcionário pode fazer várias vendas)
+        [ForeignKey("EmployeeId")]
+        public Employee? Employee { get; set; }
 
-        [ForeignKey("ProductId")]
-        public Product? Product { get; set; }
+        // Relacionamento com a tabela ItemSales (uma venda pode ter vários itens)
+        public ICollection<ItemSale> ItemSales { get; set; } = new List<ItemSale>();
     }
 }
