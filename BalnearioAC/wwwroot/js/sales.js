@@ -8,40 +8,39 @@ if (form) {
 
 listarSale();
 
-async function listarSale() {
-    try {
-        const data = await apiRequest('http://localhost:5237/Sales');
+    async function listarSale() {
+        try {
+            const data = await apiRequest('http://localhost:5237/Sales');
 
-        const response = await fetch('http://localhost:5237/sales');
-        const sales = await response.json();
+        
 
-        // Verifique a estrutura dos dados no console
-        console.log(sales);
+            // Verifique a estrutura dos dados no console
+            console.log(data);
 
-        data.sort((a, b) => a.id - b.id);
+            data.sort((a, b) => a.id - b.id);
 
-        const tbody = document.querySelector("#tabelaSales tbody");
-        tbody.innerHTML = "";
+            const tbody = document.querySelector("#tabelaSales tbody");
+            tbody.innerHTML = "";
 
-        data.forEach(sale => {
-            const tr = document.createElement("tr");
-            tr.innerHTML = `
-                <td>${sale.id}</td>
-                <td>${new Date(sale.saleDate).toLocaleDateString('pt-BR')}</td>
-                <td>R$ ${sale.totalValue}</td>
-                <td>${sale.employeeName}</td>
-                <td>${sale.itemSales.map(item => item.productName).join(", ")}</td> 
-            `;
-
+            data.forEach(sale => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${sale.id}</td>
+                    <td>${new Date(sale.saleDate).toLocaleDateString('pt-BR')}</td>
+                    <td>R$ ${sale.totalValue}</td>
+                    <td>${sale.employeeName}</td>
+                    <td>${sale.itemSales.map(item => item.productName).join(", ")}</td> 
+                `;
 
 
-            tbody.appendChild(tr);
-        });
 
-    } catch (error) {
-        console.error("Erro ao listar sales:", error);
+                tbody.appendChild(tr);
+            });
+
+        } catch (error) {
+            console.error("Erro ao listar sales:", error);
+        }
     }
-}
 
 let produtos = [];
 let carrinho = [];
@@ -141,7 +140,6 @@ function filtrarProdutos() {
 
 async function finalizarVenda() {
     try {
-        // Criar o objeto `venda` com todos os dados necessários
         const venda = {
             saleDate: new Date().toISOString(), // Data da venda (data atual)
             employeeId: 1, // ID do funcionário (ajustar conforme necessário)
@@ -155,7 +153,7 @@ async function finalizarVenda() {
         console.log("🔔 Dados da venda:", JSON.stringify(venda)); // Verifique os dados enviados
 
         // Enviar a requisição POST para a API
-        const response = await apiRequest('http://localhost:5237/Sales')
+        const response = await apiRequest('http://localhost:5237/Sales', 'POST', { venda });
 
         // Verificar se a resposta foi bem-sucedida (status 200-299)
         if (!response.ok) {

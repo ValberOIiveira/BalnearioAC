@@ -65,7 +65,7 @@ namespace BalnearioAC.Controllers
                     {
                         its.ProductId,
                         ProductName = its.Product.Name,
-                        its.Quantity,
+                        its.Qtd,
                         its.Product.Price
                     })
                 })

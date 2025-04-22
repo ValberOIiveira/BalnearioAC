@@ -20,36 +20,39 @@ namespace BalnearioAC.Controllers
         {
             _context = context;
         }
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<SaleDTO>>> GetSales()
+
+            [HttpGet]
+public async Task<ActionResult<IEnumerable<SaleDTO>>> GetSales()
+{
+    var sales = await _context.Sales
+        .Include(s => s.Employee)
+            .ThenInclude(e => e.User)
+        .Include(s => s.ItemSales)  
+            .ThenInclude(i => i.Product)
+        .Select(s => new SaleDTO
         {
-            var sales = await _context.Sales
-                .Include(s => s.Employee)
-                    .ThenInclude(e => e.User)
-                .Include(s => s.ItemSales)
-                    .ThenInclude(i => i.Product) // Inclui o Produto em cada ItemSale
-                .ToListAsync();
-
-            var salesDto = sales.Select(s => new SaleDTO
+            Id = s.Id,
+            SaleDate = s.SaleDate,
+            TotalValue = s.TotalValue,
+            EmployeeName = s.Employee != null && s.Employee.User != null 
+                ? s.Employee.User.Name 
+                : "Funcionário não encontrado",
+            ItemSales = s.ItemSales.Select(i => new ItemSaleDTO
             {
-                Id = s.Id,
-                SaleDate = s.SaleDate,
-                TotalValue = s.TotalValue,
-                EmployeeName = s.Employee?.User?.Name,
-                ItemSales = s.ItemSales?.Select(i => new ItemSaleDTO
-                {
-                    Id = i.Id,
-                    ProductId = i.ProductId ?? 0,
-                    ProductName = i.Product?.Name, // Nome do Produto
-                    Quantity = i.Quantity,
-                    UnitPrice = i.Product?.Price ?? 0
-                }).ToList()
-            }).ToList();
+                Id = i.Id,
+                ProductId = i.ProductId ?? 0,
+                ProductName = i.Product != null ? i.Product.Name : "Produto não encontrado",
+                Quantity = i.Qtd,
+                UnitPrice = i.Product != null ? i.Product.Price : 0
+            }).ToList()
+        })
+        .ToListAsync();
 
-            return Ok(salesDto);
-        }
+    return Ok(sales);
+}
 
- 
+
+
 
 
         [HttpPost]

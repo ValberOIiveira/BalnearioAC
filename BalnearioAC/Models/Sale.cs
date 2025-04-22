@@ -21,11 +21,9 @@ namespace BalnearioAC.Models
         [Column("total_value")]
         public decimal? TotalValue { get; set; }
 
-        // Relacionamento com a tabela Employee (um funcionário pode fazer várias vendas)
         [ForeignKey("EmployeeId")]
         public Employee? Employee { get; set; }
 
-        // Relacionamento com a tabela ItemSales (uma venda pode ter vários itens)
         public ICollection<ItemSale> ItemSales { get; set; } = new List<ItemSale>();
     }
 }

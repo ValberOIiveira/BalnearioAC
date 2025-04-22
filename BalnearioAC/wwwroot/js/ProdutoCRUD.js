@@ -11,7 +11,6 @@
     async function listarProdutos() {
         try {
             const data = await apiRequest('http://localhost:5237/Product');
-            console.log(data);
             // Ordena os produtos do maior para o menor ID
             data.sort((a, b) => a.id - b.id);
 
@@ -47,8 +46,8 @@
         try {
             const name = document.getElementById('name').value;
             const price = document.getElementById('price').value;
-            const quantity = document.getElementById('qtd').value; // Aqui usamos o id "qtd"
-            const category = document.getElementById('category').value; // Aqui usamos o id "qtd"
+            const quantity = document.getElementById('qtd').value; 
+            const category = document.getElementById('category').value; 
 
             if (!name || !price || !quantity || !category) {
                 alert('Preencha todos os campos');
@@ -60,16 +59,13 @@
 
             let response;
             if (id) {
-                // Atualiza o produto (PUT)
                 response = await apiRequest(`http://localhost:5237/Product/${id}`, 'PUT', { id, name, price, quantity, category });
             } else {
-                // Cria um novo produto (POST)
                 response = await apiRequest('http://localhost:5237/Product', 'POST', { name, price, quantity, category });
             }
 
             console.log(response);
 
-            // Limpa o formulário e recarrega a lista de produtos
             document.getElementById("produtoForm").reset();
             listarProdutos();
         } catch (error) {
