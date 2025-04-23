@@ -20,5 +20,8 @@ namespace BalnearioAC.Models
         public int Quantity { get; set; }
         [Column("category")]
         public string Category { get; set; }
+
+        public ICollection<ItemSale> ItemSales { get; set; } = new List<ItemSale>();
+
     }
 }

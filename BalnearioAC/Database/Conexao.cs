@@ -27,7 +27,13 @@ namespace BalnearioAC.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Configuração dos relacionamentos
+            modelBuilder.Entity<Sale>()
+                .HasOne(s => s.Employee)
+                .WithMany()
+                .HasForeignKey(s => s.EmployeeId)
+                .HasConstraintName("FK_Sale_Employee");
+
+            // Relacionamentos já existentes
             modelBuilder.Entity<Reservation>()
                 .HasOne(r => r.Visitor)
                 .WithMany()
@@ -46,7 +52,20 @@ namespace BalnearioAC.Database
                 .HasForeignKey(r => r.UserId)
                 .HasConstraintName("FK_ReportReservation_User");
 
+            modelBuilder.Entity<ItemSale>()
+                .HasOne(i => i.Product)
+                .WithMany()
+                .HasForeignKey(i => i.ProductId)
+                .HasConstraintName("FK_ItemSale_Product");
+
+            modelBuilder.Entity<ItemSale>()
+                .HasOne(i => i.Sale)
+                .WithMany(s => s.ItemSales)
+                .HasForeignKey(i => i.SaleId)
+                .HasConstraintName("FK_ItemSale_Sale");
+
             base.OnModelCreating(modelBuilder);
         }
+
     }
 }

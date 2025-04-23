@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace BalnearioAC.Models
 {
@@ -18,12 +20,13 @@ namespace BalnearioAC.Models
         public int? ProductId { get; set; }
 
         [Column("qtd")]
-        public int Quantity { get; set; }
+        public int Qtd { get; set; }
 
         [ForeignKey("SaleId")]
-        public Sale Sale { get; set; } = null!;
+        public Sale Sale { get; set; }
 
         [ForeignKey("ProductId")]
-        public Product? Product { get; set; }
+        public Product Product { get; set; }
     }
+
 }

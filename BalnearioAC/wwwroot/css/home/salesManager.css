@@ -131,3 +131,114 @@
     border: 1px solid var(--color-2);
     color: var(--color-2);
 }
+
+#tabelaSales {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilos para as células da tabela */
+#tabelaSales th, #tabelaSales td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+/* Estilo para o cabeçalho da tabela */
+#tabelaSales th {
+    background-color: #f4f4f4;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Estilo para as linhas alternadas da tabela */
+#tabelaSales tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Estilo para o último td (Produtos Vendidos) que contém uma lista */
+#tabelaSales td:last-child {
+    white-space: normal; /* Permite que o texto quebre em várias linhas */
+    word-wrap: break-word; /* Quebra palavras longas */
+}
+
+/* Estilos específicos para a lista dentro do último td */
+#tabelaSales td:last-child ul {
+    list-style-type: none; /* Remove o marcador da lista */
+    padding-left: 0;
+}
+
+#tabelaSales td:last-child li {
+    margin-bottom: 5px; /* Espaçamento entre os itens da lista */
+    padding-left: 10px;
+    position: relative;
+}
+
+#tabelaSales td:last-child li::before {
+    content: "•"; /* Usando um ponto para marcar os itens */
+    position: absolute;
+    left: 0;
+    font-size: 1.2em;
+    color: #007bff;
+}
+
+/* Estilo para o botão de ações */
+#tabelaSales .btn {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#tabelaSales .btn:hover {
+    background-color: #0056b3;
+}
+
+#tabelaProdutos {
+    width: 100%; /* A tabela ocupa 100% da largura disponível */
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilos para as células da tabela */
+#tabelaProdutos th, #tabelaProdutos td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+/* Estilo para o cabeçalho da tabela */
+#tabelaProdutos th {
+    background-color: #f4f4f4;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Estilo para as linhas alternadas da tabela */
+#tabelaProdutos tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Estilo para o botão de "Editar" */
+#tabelaProdutos .editBtn {
+    padding: 5px 10px;
+    background-color: var(--color-2);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+
+/* Corrigir o alinhamento do botão "Editar" */
+#tabelaProdutos td:last-child {
+    text-align: center; /* Centraliza o botão de edição */
+}
