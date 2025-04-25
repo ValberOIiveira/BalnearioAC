@@ -21,35 +21,35 @@ namespace BalnearioAC.Controllers
             _context = context;
         }
 
-            [HttpGet]
-public async Task<ActionResult<IEnumerable<SaleDTO>>> GetSales()
-{
-    var sales = await _context.Sales
-        .Include(s => s.Employee)
-            .ThenInclude(e => e.User)
-        .Include(s => s.ItemSales)  
-            .ThenInclude(i => i.Product)
-        .Select(s => new SaleDTO
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<SaleDTO>>> GetSales()
         {
-            Id = s.Id,
-            SaleDate = s.SaleDate,
-            TotalValue = s.TotalValue,
-            EmployeeName = s.Employee != null && s.Employee.User != null 
-                ? s.Employee.User.Name 
-                : "Funcionário não encontrado",
-            ItemSales = s.ItemSales.Select(i => new ItemSaleDTO
-            {
-                Id = i.Id,
-                ProductId = i.ProductId ?? 0,
-                ProductName = i.Product != null ? i.Product.Name : "Produto não encontrado",
-                Quantity = i.Qtd,
-                UnitPrice = i.Product != null ? i.Product.Price : 0
-            }).ToList()
-        })
-        .ToListAsync();
+            var sales = await _context.Sales
+                .Include(s => s.Employee)
+                    .ThenInclude(e => e.User)
+                .Include(s => s.ItemSales)
+                    .ThenInclude(i => i.Product)
+                .Select(s => new SaleDTO
+                {
+                    Id = s.Id,
+                    SaleDate = s.SaleDate,
+                    TotalValue = s.TotalValue,
+                    EmployeeName = s.Employee != null && s.Employee.User != null
+                        ? s.Employee.User.Name
+                        : "Funcionário não encontrado",
+                    ItemSales = s.ItemSales.Select(i => new ItemSaleDTO
+                    {
+                        Id = i.Id,
+                        ProductId = i.ProductId ?? 0,
+                        ProductName = i.Product != null ? i.Product.Name : "Produto não encontrado",
+                        Quantity = i.Qtd,
+                        UnitPrice = i.Product != null ? i.Product.Price : 0
+                    }).ToList()
+                })
+                .ToListAsync();
 
-    return Ok(sales);
-}
+            return Ok(sales);
+        }
 
 
 
@@ -59,27 +59,62 @@ public async Task<ActionResult<IEnumerable<SaleDTO>>> GetSales()
         public async Task<IActionResult> PostSale([FromBody] Sale sale)
         {
             if (sale == null)
-            {
                 return BadRequest("A venda não pode ser nula");
-            }
 
-            _context.Sales.Add(sale);
-            await _context.SaveChangesAsync();
+            using var transaction = await _context.Database.BeginTransactionAsync();
 
-
-            if (sale.ItemSales != null && sale.ItemSales.Any())
+            try
             {
-                foreach (var item in sale.ItemSales)
+                var novaVenda = new Sale
                 {
-                    item.SaleId = sale.Id;
-                    _context.ItemSales.Add(item);
+                    EmployeeId = sale.EmployeeId,
+                    SaleDate = sale.SaleDate,
+                    TotalValue = sale.TotalValue
+                };
+
+                _context.Sales.Add(novaVenda);
+                await _context.SaveChangesAsync();
+
+                if (sale.ItemSales != null && sale.ItemSales.Any())
+                {
+                    foreach (var item in sale.ItemSales)
+                    {
+                        var novoItem = new ItemSale
+                        {
+                            SaleId = novaVenda.Id,
+                            ProductId = item.ProductId,
+                            Qtd = item.Qtd
+                        };
+
+                        _context.ItemSales.Add(novoItem);
+                    }
+
+                    await _context.SaveChangesAsync();
                 }
 
-                await _context.SaveChangesAsync();
-            }
+                await transaction.CommitAsync();
 
-            return sale.Id > 0 ? Ok(sale) : BadRequest("Erro ao cadastrar venda");
+                novaVenda.ItemSales = sale.ItemSales;
+
+                return Ok(novaVenda);
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+
+                // Captura a mensagem de erro mais interna possível
+                var deepError = ex;
+                while (deepError.InnerException != null)
+                    deepError = deepError.InnerException;
+
+                return StatusCode(500, $"Erro ao salvar a venda: {deepError.Message}");
+            }   
+
+
+
         }
+
+
 
 
         [HttpPut("{id}")]

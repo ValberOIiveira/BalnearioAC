@@ -141,36 +141,32 @@ function filtrarProdutos() {
 async function finalizarVenda() {
     try {
         const venda = {
-            saleDate: new Date().toISOString(), // Data da venda (data atual)
-            employeeId: 1, // ID do funcionário (ajustar conforme necessário)
-            totalValue: carrinho.reduce((total, item) => total + (item.price * item.qtd), 0), // Total da venda
+            saleDate: new Date().toISOString(),
+            employeeId: 1,
+            totalValue: carrinho.reduce((total, item) => total + (item.price * item.qtd), 0),
             itemSales: carrinho.map(item => ({
-                productId: item.id, // ID do produto
-                quantity: item.qtd, // Quantidade do produto
+                productId: item.id,
+                qtd: item.qtd 
             }))
         };
 
-        console.log("🔔 Dados da venda:", JSON.stringify(venda)); // Verifique os dados enviados
+        console.log("🔔 Enviando venda:", JSON.stringify(venda));
 
-        // Enviar a requisição POST para a API
-        const response = await apiRequest('http://localhost:5237/Sales', 'POST', { venda });
+        const response = await apiRequest('http://localhost:5237/Sales', 'POST', venda);
 
-        // Verificar se a resposta foi bem-sucedida (status 200-299)
-        if (!response.ok) {
-            const errorDetails = await response.json(); // Use .json() para obter os detalhes de erro
-            console.error("Erro ao salvar venda:", errorDetails);
-            throw new Error(errorDetails.message || 'Erro desconhecido');
+        if (!response) {
+            throw new Error("Falha ao salvar venda");
         }
 
-        // Caso a venda seja concluída com sucesso
-        alert("Venda finalizada com sucesso!");
-        limparCarrinho(); // Função para limpar o carrinho
-        closeModal('modalVenda'); // Função para fechar o modal de venda
-
+        alert("✅ Venda finalizada com sucesso!");
+        limparCarrinho();
+        closeModal('modalVenda');
     } catch (error) {
-        console.error("Erro ao finalizar venda:", error); // Log de erro, se houver
+        console.error("🚨 Erro ao finalizar venda:", error);
+        alert("Erro ao finalizar venda: " + error.message);
     }
 }
+
 
 
 

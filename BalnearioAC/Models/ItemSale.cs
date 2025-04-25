@@ -1,8 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Text.Json.Serialization; // importante para usar [JsonIgnore]
 
 namespace BalnearioAC.Models
 {
@@ -23,10 +22,10 @@ namespace BalnearioAC.Models
         public int Qtd { get; set; }
 
         [ForeignKey("SaleId")]
-        public Sale Sale { get; set; }
+        [JsonIgnore] // 👈 isso evita que o campo seja obrigatório no JSON de entrada
+        public Sale? Sale { get; set; }
 
         [ForeignKey("ProductId")]
-        public Product Product { get; set; }
+        public Product? Product { get; set; }
     }
-
 }
