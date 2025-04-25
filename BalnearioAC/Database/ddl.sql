@@ -1,5 +1,6 @@
+-- Active: 1740589839907@@127.0.0.1@5432@resort
 -- CRIAÇÃO DO BANCO
-CREATE DATABASE Resort;
+CREATE DATABASE resort;
 
 -- TABELAS
 CREATE TABLE user_type (
@@ -69,6 +70,8 @@ CREATE TABLE sales (
     total_value DECIMAL(10,2),
     FOREIGN KEY (id_employee) REFERENCES employees(id) ON DELETE SET NULL
 );
+
+select * from employees;
 
 CREATE TABLE items_sale (
     id SERIAL PRIMARY KEY,

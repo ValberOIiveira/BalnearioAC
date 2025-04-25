@@ -65,6 +65,7 @@ namespace BalnearioAC.Controllers
 
             try
             {
+                // Primeiro: Cria a venda
                 var novaVenda = new Sale
                 {
                     EmployeeId = sale.EmployeeId,
@@ -73,15 +74,16 @@ namespace BalnearioAC.Controllers
                 };
 
                 _context.Sales.Add(novaVenda);
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(); // Gera o ID da venda aqui!
 
+                // Depois: Cria os itens vinculados à venda
                 if (sale.ItemSales != null && sale.ItemSales.Any())
                 {
                     foreach (var item in sale.ItemSales)
                     {
                         var novoItem = new ItemSale
                         {
-                            SaleId = novaVenda.Id,
+                            SaleId = novaVenda.Id, // Usa o ID gerado
                             ProductId = item.ProductId,
                             Qtd = item.Qtd
                         };
@@ -94,25 +96,16 @@ namespace BalnearioAC.Controllers
 
                 await transaction.CommitAsync();
 
-                novaVenda.ItemSales = sale.ItemSales;
-
+                // Retorna a venda criada (opcional: pode retornar com os itens também)
                 return Ok(novaVenda);
             }
             catch (Exception ex)
             {
                 await transaction.RollbackAsync();
-
-                // Captura a mensagem de erro mais interna possível
-                var deepError = ex;
-                while (deepError.InnerException != null)
-                    deepError = deepError.InnerException;
-
-                return StatusCode(500, $"Erro ao salvar a venda: {deepError.Message}");
-            }   
-
-
-
+                return StatusCode(500, $"Erro ao cadastrar venda: {ex.Message}");
+            }
         }
+
 
 
 

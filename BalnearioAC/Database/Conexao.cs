@@ -64,6 +64,13 @@ namespace BalnearioAC.Database
                 .HasForeignKey(i => i.SaleId)
                 .HasConstraintName("FK_ItemSale_Sale");
 
+            modelBuilder.Entity<ItemSale>()
+                .HasOne(i => i.Product)
+                .WithMany(p => p.ItemSales)          // <- use a mesma navegação do outro lado
+                .HasForeignKey(i => i.ProductId)     // <- FK única
+                .HasConstraintName("FK_ItemSale_Product");
+
+
             base.OnModelCreating(modelBuilder);
         }
 
