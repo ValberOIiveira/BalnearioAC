@@ -21,27 +21,34 @@ namespace BalnearioAC.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Product>> GetProducts()
+        public async Task<IEnumerable<ProductReadDto>> GetProducts()
         {
             return await _context.Products.ToListAsync();
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostProduct([FromBody] Product product)
+        public async Task<IActionResult> PostProduct([FromBody] ProductCreateDto product)
         {
-            if (product == null)
+            try
+            {    
+                if (product == null)
+                {
+                    return BadRequest("Produto não pode ser nulo");
+                }
+
+                _context.Products.Add(product);
+                await _context.SaveChangesAsync();
+                return Ok(product);
+            }
+            catch (System.Exception ex)
             {
-                return BadRequest("Produto não pode ser nulo");
+                return BadRequest(ex.Message);
             }
 
-            _context.Products.Add(product);
-            await _context.SaveChangesAsync();
-
-            return product.Id > 0 ? Ok(product) : BadRequest("Erro ao cadastrar produto");
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduct(int id, [FromBody] Product product)
+        public async Task<IActionResult> PutProduct(int id, [FromBody] ProductCreateDto product)
         {
             if (product == null || id != product.Id)
             {

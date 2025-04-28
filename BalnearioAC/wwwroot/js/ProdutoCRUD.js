@@ -39,10 +39,10 @@
         }
     }
 
+   
 
     async function salvarProduto(event) {
         event.preventDefault();
-
         try {
             const name = document.getElementById('name').value;
             const price = document.getElementById('price').value;
@@ -66,7 +66,7 @@
 
             console.log(response);
 
-            document.getElementById("produtoForm").reset();
+            document.getElementById("formProd").reset();
             listarProdutos();
         } catch (error) {
             console.error('Erro ao salvar:', error);
@@ -87,3 +87,8 @@
             console.error("Erro ao carregar produto para edição:", error);
         }
     }
+
+
+const form1 = document.getElementById("formProd");
+
+form1.addEventListener("submit", salvarProduto);
